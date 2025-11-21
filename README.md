@@ -762,3 +762,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **empty states** — Keep commands copy-pasteable for new contributors.
 - **GitHub Pages deployment** — Use the existing project patterns when extending this area.
 - **date filtering** — Use the existing project patterns when extending this area.
+- **production build** — Document any manual steps that cannot be automated.
