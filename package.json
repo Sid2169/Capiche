@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack serve --open --config webpack.dev.js",
     "watch": "webpack --watch --config webpack.dev.js",
-    "build": "webpack --config webpack.dev.js"
+    "build": "webpack --config webpack.prod.js"
   },
   "repository": {
     "type": "git",
@@ -33,6 +33,6 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
-    "date-fns": "^2.30.0"
+    "date-fns": "^2.29.1"
   }
 }
