@@ -761,3 +761,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **browser support** — Include a short reproduction step when reporting issues.
 - **empty states** — Keep commands copy-pasteable for new contributors.
 - **GitHub Pages deployment** — Use the existing project patterns when extending this area.
+- **date filtering** — Use the existing project patterns when extending this area.
