@@ -1,43 +1,180 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
 
-  margin: 0;
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
 }
 
 :root {
-  --secondary-color: hsl(214, 33%, 95%);
-
-  --text-color: hsl(0, 0%, 8%);
+    --secondary-color: hsl(214, 33%, 95%);
+    --text-color: hsl(0, 0%, 8%);
+    --accent-color: hsl(0, 0%, 12%);
 }
 
 html {
-  font-size: 10px;
-
-  height: 100%;
+    font-size: 10px;
+    height: 100%;
 }
 
 body {
-  height: 100%;
-
-  line-height: 1.2;
+    height: 100%;
+    line-height: 1.2;
 }
 
-body,
-button,
-input,
-select,
-textarea {
-  font-family: Inter;
-
-  font-size: 1.6rem;
-
-  color: var(--text-color);
+body, button, input, select, textarea {
+    font-family: Inter;
+    font-size: 1.6rem;
+    color: var(--text-color);
 }
 
-p {
-  font-size: 5rem;
+h1 {
+    margin-bottom: 25px;
+    font-size: 4rem;
+    font-weight: 800;
+}
+
+h3 {
+    font-size: 3.2rem;
+    font-weight: 750;
+}
+
+
+
+
+.main-container {
+    display: grid;
+    grid-template-columns: 325px 1fr;
+    height: 100%;
+}
+
+
+
+
+/* ----- Sidebar ----- */
+ul {
+    padding: 0;
+}
+
+li {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar {
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    padding: 35px;
+    background-color: var(--secondary-color);
+}
+
+.sidebar_top {
+    margin-bottom: 40px;
+}
+
+.sidebar_subtitle {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.sidebar_item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 7px 12px;
+    border-radius: 6px;
+    user-select: none;
+}
+
+.sidebar_item.active {
+    background-color: hsl(214.3, 33.3%, 85%);
+    font-weight: 650;
+}
+
+.sidebar_icon {
+    width: 20px;
+    height: 20px;
+}
+
+
+
+
+/* ----- Project content ----- */
+.workspace-container {
+    max-width: 1200px;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 50px;
+}
+
+.workspace_header-top {
+    display: flex;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.n-task {
+    display: block;
+    background-color: var(--accent-color);
+    border-radius: 6px;
+}
+
+
+
+
+/* ----- Buttons ----- */
+button {
+    appearance: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s all ease;
+    padding: 0;
+}
+
+#newProject {
+    width: 100%;
+    display: none;
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+#newProject:hover {
+    background-color: var(--accent-color);
+    color: white;
+    fill: white;
+}
+
+#newProject.active {
+    display: flex;
+}
+
+.n-task_btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 20px;
+    font-weight: 600;
+    color: white;
+    fill: white;
+}
+
+
+
+
+/* ----- Utilities ----- */
+.flex-g {
+    flex-grow: 1;
+}
+
+.icon-container > svg {
+    display: block;
 }
