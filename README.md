@@ -759,3 +759,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **keyboard shortcuts** — Check the empty state after clearing local storage.
 - **browser support** — Check the empty state after clearing local storage.
 - **browser support** — Include a short reproduction step when reporting issues.
+- **empty states** — Keep commands copy-pasteable for new contributors.
