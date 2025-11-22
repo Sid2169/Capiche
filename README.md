@@ -764,3 +764,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **date filtering** — Use the existing project patterns when extending this area.
 - **production build** — Document any manual steps that cannot be automated.
 - **GitHub Pages deployment** — Document any manual steps that cannot be automated.
+- **data import/export** — Prefer small, focused changes over broad rewrites.
