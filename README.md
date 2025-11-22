@@ -763,3 +763,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **GitHub Pages deployment** — Use the existing project patterns when extending this area.
 - **date filtering** — Use the existing project patterns when extending this area.
 - **production build** — Document any manual steps that cannot be automated.
+- **GitHub Pages deployment** — Document any manual steps that cannot be automated.
