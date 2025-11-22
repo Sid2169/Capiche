@@ -1,24 +1,34 @@
+/**
+ * @module src/modules/storage.js
+ *
+ * @description
+ * Handles loading, initializing, and persisting project and task data
+ * using localStorage. Ensures fallback test data when none exists.
+ */
+
 import { tasksHandler, task } from "./tasks.js";
 import { projectsHandler } from "./projects.js";
 import { renderProjects } from "./ui/ui-projects.js";
 
-function initStorage() {
-  // Try to get data
-  projectsHandler.items = JSON.parse(localStorage.getItem("projects"));
-  tasksHandler.items = JSON.parse(localStorage.getItem("tasks"));
+/**
+ * Loads stored project/task data, or inserts test data if none exists.
+ * Initializes both handlers and triggers UI rendering.
+ */
+export const initStorage = () => {
+  // Attempt to read data from localStorage
+  const storedProjects = JSON.parse(localStorage.getItem("projects"));
+  const storedTasks = JSON.parse(localStorage.getItem("tasks"));
 
-  // If there was no data in localStorage assign some test data
-  if (projectsHandler.items === null || tasksHandler.items === null) {
+  projectsHandler.items = storedProjects;
+  tasksHandler.items = storedTasks;
+
+  // If any stored data is missing, fallback to predefined test data
+  if (!storedProjects || !storedTasks) {
     const testProjectsData = [
-      {
-        id: 0,
-        title: "Home",
-      },
-      {
-        id: 1,
-        title: "Ideal Year (A sample Project)",
-      },
+      { id: 0, title: "Home" },
+      { id: 1, title: "Ideal Year (A sample Project)" },
     ];
+
     const testTasksData = [
       task(
         "Design a personal vision board",
@@ -76,41 +86,50 @@ function initStorage() {
         new Date("2026-01-25 00:00"),
         "high",
         1
-    ),
-    task(
+      ),
+      task(
         "Plan a future-self strategy day",
         "Map the next 3–5 years and identify the first actionable steps.",
         new Date("2026-02-18 00:00"),
         "medium",
         1
-    ),
-    task(
+      ),
+      task(
         "Declutter one major zone of your life",
         "Tackle a digital archive, workspace, or physical storage to regain focus.",
         new Date("2025-12-30 00:00"),
         "low",
         1
-    )
+      ),
     ];
 
+    // Persist test data to localStorage
     localStorage.setItem("projects", JSON.stringify(testProjectsData));
     localStorage.setItem("tasks", JSON.stringify(testTasksData));
 
+    // Assign defaults for runtime handlers
     projectsHandler.items = testProjectsData;
     tasksHandler.items = testTasksData;
   }
 
+  // Initialize ID counters and rebuild any needed data state
   projectsHandler.init();
   tasksHandler.init();
+
+  // Re-render the project interface
   renderProjects();
-}
+};
 
-function updateProjectsStorage() {
+/**
+ * Persists current project list to localStorage.
+ */
+export const updateProjectsStorage = () => {
   localStorage.setItem("projects", JSON.stringify(projectsHandler.items));
-}
+};
 
-function updateTasksStorage() {
+/**
+ * Persists current task list to localStorage.
+ */
+export const updateTasksStorage = () => {
   localStorage.setItem("tasks", JSON.stringify(tasksHandler.items));
-}
-
-export { initStorage, updateProjectsStorage, updateTasksStorage };
+};
