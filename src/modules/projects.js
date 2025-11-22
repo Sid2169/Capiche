@@ -1,36 +1,68 @@
-const projectsHandler = {
-    items: [],
-    projectIdCount: 0,
-    addProject: function (project) {
-        return this.items.push(project) - 1;
-    },
-    removeProject: function (index) {
-        return this.items.splice(index, 1);
-    },
-    init: function () {
-        // Get the highest project's ID to continue from that value
-        this.projectIdCount = this.items.reduce((highest, curr) => {
-            return (curr.id > highest) ? curr.id : highest;
-        }, 0);
-    }
+/**
+ * @module src/modules/project.js
+ *
+ * @description
+ * Manages project items and their identifiers.
+ */
+
+/// Central handler for project creation, storage, and indexing
+export const projectsHandler = {
+  /** @type {Array<object>} List of stored projects */
+  items: [],
+
+  /** @type {number} Tracks the highest assigned project ID */
+  projectIdCount: 0,
+
+  /**
+   * Adds a project object to the collection.
+   * @param {object} project - A project object { id, title }.
+   * @returns {number} Index where the project was inserted.
+   */
+  addProject(project) {
+    // push returns new length → subtract 1 to get index
+    return this.items.push(project) - 1;
+  },
+
+  /**
+   * Removes a project from the collection.
+   * @param {number} index - Position in the items array.
+   * @returns {Array<object>} Removed project(s).
+   */
+  removeProject(index) {
+    return this.items.splice(index, 1);
+  },
+
+  /**
+   * Initializes internal ID counter based on existing project data.
+   * Ensures new projects continue from the highest existing ID.
+   */
+  init() {
+    this.projectIdCount = this.items.reduce(
+      (highest, curr) => (curr.id > highest ? curr.id : highest),
+      0
+    );
+  },
 };
 
-function project(id, title) {
-    return {
-        id,
-        title
-    }
-}
+/**
+ * Factory function for project objects.
+ * @param {number} id - Unique identifier.
+ * @param {string} title - Project title.
+ * @returns {{id: number, title: string}}
+ */
+const createProject = (id, title) => ({ id, title });
 
-function createNewProject(title) {
-    projectsHandler.projectIdCount++;
-    const newProject = project(projectsHandler.projectIdCount, title);
-    const newProjectIndex = projectsHandler.addProject(newProject);
-    return newProjectIndex;
-}
+/**
+ * Creates and stores a new project.
+ * @param {string} title - Title of the new project.
+ * @returns {number} Index where the project was inserted.
+ */
+export const createNewProject = (title) => {
+  // Increment ID counter for the next project
+  projectsHandler.projectIdCount++;
 
+  const newProject = createProject(projectsHandler.projectIdCount, title);
+  const index = projectsHandler.addProject(newProject);
 
-export {
-    createNewProject,
-    projectsHandler
+  return index;
 };
