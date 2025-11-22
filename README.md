@@ -8,7 +8,7 @@
 
 ![Website's Screen Shot](image.png)
 
-[Live Demo](#) • [Report Bug](https://github.com/Sid2169/Capiche/issues) • [Request Feature](https://github.com/Sid2169/Capiche/issues)
+[Live Demo](https://sid2169.github.io/Capiche/) • [Report Bug](https://github.com/Sid2169/Capiche/issues) • [Request Feature](https://github.com/Sid2169/Capiche/issues)
 
 ---
 
