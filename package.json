@@ -1,7 +1,7 @@
 {
   "name": "Capiche",
   "version": "1.0.0",
-  "description": "",
+  "description": "A modern task management application built with vanilla JavaScript",
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,15 +11,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DarkWool/to-do-list.git"
+    "url": "git+https://github.com/Sid2169/Capiche.git"
   },
-  "keywords": [],
+  "keywords": [
+    "task-management",
+    "todo-list",
+    "vanilla-javascript",
+    "webpack",
+    "productivity"
+  ],
   "author": "Ead Adyreal",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/DarkWool/to-do-list/issues"
+    "url": "https://github.com/Sid2169/Capiche/issues"
   },
-  "homepage": "https://github.com/DarkWool/to-do-list#readme",
+  "homepage": "https://github.com/Sid2169/Capiche#readme",
   "devDependencies": {
     "css-loader": "^6.7.1",
     "css-minimizer-webpack-plugin": "^4.0.0",
