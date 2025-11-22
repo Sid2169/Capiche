@@ -264,12 +264,15 @@ function showTaskDetails(e) {
 }
 
 function deleteTask() {
-    // Delete task obj from project
+    const confirmed = window.confirm("Delete this task?");
+    if (!confirmed) return;
+
     tasksHandler.removeTask(currTaskInfo.index);
 
     updateTasksStorage();
     renderTasks();
 }
+
 
 
 // Edit task
@@ -296,6 +299,9 @@ function editTask(e) {
     const titleInput = e.target.elements["f-eTaskTitle"];
     if (validateFormData(titleInput) === false) return;
 
+    const confirmed = window.confirm("Apply changes to this task?");
+    if (!confirmed) return;
+
     const data = new FormData(e.currentTarget);
     const title = data.get("f-eTaskTitle");
     const details = data.get("f-eTaskDetails");
@@ -307,7 +313,6 @@ function editTask(e) {
     currTask.details = details;
     currTask.priority = priority;
 
-    // If the date is valid change the value of the task object
     if (isValid(date) === true) {
         currTask.date = date;
     } else {
@@ -400,8 +405,8 @@ function createNoTasksMessageUI() {
     image.classList.add("tasks_empty-img");
 
     image.src = emptyMessageImage;
-    image.alt = "A woman walking in the park";
-    message.textContent = "You don't have any tasks, just relax!";
+    image.alt = "Two friends sitting under a tree";
+    message.textContent = "Your space is clear—use this moment to breathe, dream, and start something meaningful.”";
 
     msgContainer.prepend(image, message);
 

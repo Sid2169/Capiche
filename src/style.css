@@ -1,18 +1,66 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
+/* Berkshire Swash - Display font for branding */
+@font-face {
+  font-family: "berkshire";
+  src: url("assets/fonts/berkshireswash-regular-webfont.woff2") format("woff2"),
+    url("assets/fonts/berkshireswash-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
 }
 
 :root {
-    --secondary-color: hsl(214, 33%, 95%);
-    --text-color: hsl(0, 0%, 5%);
-    --accent-color: hsl(210, 18%, 11%);
+    --color-bg-primary: #101010; /* Midnight Black - Main background */
+    --secondary-color: #1c1c1c;
+    --text-color: #008b8b;
+    --accent-color: #e6f7ff;
+     --color-text-accent: #00bfff; /* Deep Sky Blue - Accent text */
     --blue: hsl(212, 100%, 48%);
     --yellow: hsl(41, 100%, 50%);
     --red: hsl(0, 100%, 57%);
     --red-text: hsl(0, 90%, 44%);
+
+    /* Typography Scale */
+  --font-family-primary: "Inter", sans-serif;
+  --font-family-display: "berkshire", serif;
+
+   --font-size-base: 1.6rem; /* 16px */
+  --font-size-large: 2rem; /* 20px */
+  --font-size-xlarge: 3.2rem; /* 32px */
+  --font-size-xxlarge: 4rem; /* 40px */
+  --font-size-display: 5rem; /* 50px */
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  --line-height-tight: 1.1;
+  --line-height-normal: 1.5;
+
+  /* Spacing */
+  --spacing-xs: 7px;
+  --spacing-sm: 10px;
+  --spacing-md: 15px;
+  --spacing-lg: 20px;
+  --spacing-xl: 25px;
+  --spacing-xxl: 35px;
+  --spacing-xxxl: 50px;
+
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+
+  /* Icon Sizes */
+  --icon-size-sm: 16px;
+  --icon-size-md: 20px;
+  --icon-size-lg: 24px;
 }
 
 html {
@@ -26,10 +74,11 @@ body {
 }
 
 body, button, input, select, textarea {
-    font-family: Inter;
+    font-family: var(--font-family-primary);
     font-size: 1.6rem;
     color: var(--text-color);
     text-rendering: optimizeLegibility;
+    background-color: var(--color-bg-primary);
 }
 
 h1 {
@@ -115,9 +164,13 @@ li {
 
 .sidebar_title {
     display: flex;
-    margin-bottom: 25px;
+    margin-bottom: var(--spacing-xl);
     justify-content: space-between;
     align-items: center;
+    font-family: var(--font-family-display);
+    color: var(--color-text-accent);
+    font-size: var(--font-size-xxlarge);
+    font-weight: var(--font-weight-extrabold);
 }
 
 .sidebar_top {
@@ -150,11 +203,12 @@ li {
     border-radius: 6px;
     user-select: none;
     transition: 0.2s background-color ease;
+    fill: var(--text-color);
 }
 
 .sidebar_item.active {
-    fill: white;
-    color: white;
+    fill: var(--color-text-accent);
+    color: var(--color-text-accent);
     background-color: var(--accent-color);
     font-weight: 650;
 }
@@ -170,6 +224,7 @@ li {
     width: 20px;
     height: 20px;
     flex-shrink: 0;
+    fill: var(--text-color);
 }
 
 .n-project_form {
@@ -233,6 +288,7 @@ li {
 
 .workspace_title {
     display: none;
+    color: var(--color-text-accent);
 }
 
 .workspace_title-input {
@@ -414,8 +470,8 @@ input[type="checkbox"]:checked {
     font-weight: bold;
     font-size: 1.8rem;
     border-radius: 6px 6px 0 0;
-    background-color: var(--accent-color);
-    color: white;
+    background-color: var(--color-bg-primary);
+    color: var(--text-color);
 }
 
 .task-modal_header,
@@ -424,7 +480,7 @@ input[type="checkbox"]:checked {
 }
 
 .task-modal_body {
-    background-color: white;
+    background-color: var(--secondary-color);
     border-radius: 0 0 6px 6px;
 }
 
@@ -444,6 +500,10 @@ input[type="checkbox"]:checked {
     flex-direction: column;
     gap: 5px;
     font-weight: 600;
+}
+
+#f-nTaskPriority {
+    background-color: var(--color-bg-primary);
 }
 
 .task-modal_w > :is(input, textarea, select) {
@@ -517,8 +577,8 @@ input[type="checkbox"]:checked {
     display: none;
     padding: 10px 50px;
     font-weight: 600;
-    color: white;
-    fill: white;
+    color: var(--text-color);
+    fill: var(--text-color);
     background-color: var(--accent-color);
 }
 
@@ -552,16 +612,18 @@ input[type="submit"] {
     padding: 10px;
     border-radius: 6px;
     font-weight: bold;
+    fill: var(--text-color);
 }
 
 #newProject.active {
     display: flex;
+
 }
 
 .sidebar_item-btn {
     opacity: 0;
     transition: 0.1s opacity ease;
-    fill: var(--accent-color);
+    fill: var(--text-color);
 }
 
 .n-task_btn {
@@ -571,8 +633,8 @@ input[type="submit"] {
     gap: 15px;
     padding: 15px;
     font-weight: 600;
-    color: white;
-    fill: white;
+    color: var(--text-color);
+    fill: var(--text-color);
     background-color: var(--accent-color);
     border-radius: 6px;
 }
@@ -584,6 +646,7 @@ input[type="submit"] {
     font-weight: 600;
     padding: 5px 10px;
     border-radius: 6px;
+    fill: var(--text-color);
 }
 
 .workspace_actions-btn > svg {
@@ -597,11 +660,11 @@ input[type="submit"] {
     border-radius: 4px;
     font-weight: bold;
     background-color: var(--accent-color);
-    color: white;
+    color: var(--text-color);
 }
 
 .close-modal-btn {
-    fill: var(--red);
+    fill: var(--color-text-accent);
 }
 
 .task_details-btn {
@@ -609,6 +672,7 @@ input[type="submit"] {
     width: 20px;
     height: 20px;
     transition: 0.2s all ease;
+    fill: var(--text-color);
 }
 
 .task_details-btn.rotate {
@@ -667,7 +731,7 @@ input[type="submit"] {
     }
 
     .sidebar_item:not(.active):hover {
-        background-color: hsl(210, 33.3%, 85%);
+        background-color: var(--color-bg-primary);
     }
 
     .sidebar_item:hover > .sidebar_item-btn {
@@ -675,13 +739,13 @@ input[type="submit"] {
     }
 
     .sidebar_item.active:hover .sidebar_item-btn {
-        fill: white;
+        fill: var(--color-text-accent);
     }
 
     #newProject:hover {
         background-color: var(--accent-color);
-        color: white;
-        fill: white;
+        color: var(--color-text-accent);
+        fill: var(--color-text-accent);
     }
 
     input[type="checkbox"]:not(:checked):hover {
@@ -691,13 +755,15 @@ input[type="submit"] {
 
     .n-task_btn:hover,
     .task-modal_submit:hover {
-        background-color: hsl(210, 15%, 25%);
+        background-color: white;
+        color: var(--color-text-accent);
+        fill: var(--color-text-accent);
     }
 
     .workspace_actions-btn:hover {
         background-color: var(--accent-color);
-        color: white;
-        fill: white;
+        color: var(--color-text-accent);
+        fill: var(--color-text-accent);
     }
 
     .task_details-btn:hover {
@@ -717,7 +783,7 @@ input[type="submit"] {
     }
 
     .resp-menu_btn:hover {
-        fill: hsl(222.9, 4%, 65%);
+        fill: var(--color-text-accent);
     }
 
     .grow-effect:hover {
@@ -755,6 +821,7 @@ input[type="submit"] {
         justify-content: end;
         align-items: center;
         padding: 10px 35px;
+        background-color: var(--secondary-color);
     }
 
     .workspace-container {

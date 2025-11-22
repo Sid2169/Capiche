@@ -85,6 +85,10 @@ function createProjectUI(project, projectIndex) {
 
 function deleteProject(index) {
     const projectId = projectsHandler.items[index].id;
+
+    const confirmed = window.confirm("Are you sure you want to delete this project, it cannot be undone?");
+    if (!confirmed) return;
+
     tasksHandler.removeProjectTasks(projectId);
     projectsHandler.removeProject(index);
 

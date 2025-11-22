@@ -3,107 +3,114 @@ import { projectsHandler } from "./projects.js";
 import { renderProjects } from "./ui/ui-projects.js";
 
 function initStorage() {
-    // Try to get data
-    projectsHandler.items = JSON.parse(localStorage.getItem("projects"));
-    tasksHandler.items = JSON.parse(localStorage.getItem("tasks"));
+  // Try to get data
+  projectsHandler.items = JSON.parse(localStorage.getItem("projects"));
+  tasksHandler.items = JSON.parse(localStorage.getItem("tasks"));
 
-    // If there was no data in localStorage assign some test data
-    if (projectsHandler.items === null || tasksHandler.items === null) {
-        const testProjectsData = [
-            {
-                id: 0,
-                title: "Home",
-            },
-            {
-                id: 1,
-                title: "Demo Project",
-            }
-        ]
-        const testTasksData = [
-            task("You can edit this task and delete it!",
-                "",
-                new Date("2022-09-17 00:00"),
-                "none",
-                0,
-            ),
-            task("Set priorities for each one of your tasks",
-                `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eu tortor mi. Proin in sapien vehicula, 
-                feugiat nunc sit amet, cursus velit. Integer ut nisi semper, fringilla elit ac, rutrum turpis. Vestibulum 
-                lacinia efficitur arcu, vitae pharetra urna sagittis nec. Praesent sodales ornare tortor, at lacinia augue 
-                condimentum et. Duis ut rutrum odio. Maecenas ac tincidunt magna, at finibus est. Donec eu massa id risus 
-                gravida feugiat. Curabitur tincidunt turpis ut nunc facilisis sagittis.
-                Etiam ultrices ultrices erat, vitae porttitor risus posuere quis. Pellentesque a metus posuere, fringilla
-                eros ac, sagittis neque. Vivamus pretium semper arcu. Sed nisi velit, consectetur viverra feugiat vel,
-                dapibus et lacus. Praesent eget tempus dolor. Duis lacinia tristique augue, eu pharetra sapien mattis id.
-                Suspendisse faucibus lectus eros, eget dapibus purus lacinia sit amet. Pellentesque eleifend pulvinar imperdiet.`,
-                new Date("2022-09-13 00:00"),
-                "high",
-                0
-            ),
-            task("Push the project to Github",
-                "Don't forget that you have to do it before this week ends!",
-                new Date("2022-09-13 00:00"),
-                "medium",
-                0
-            ),
-            task("Do some exercise",
-                null,
-                null,
-                "low",
-                0,
-                true
-            ),
-            task("Take meds",
-                "Example med",
-                new Date("2022-09-12 00:00"),
-                "none",
-                0
-            ),
-            task(
-                "You can create your own projects to organize the tasks",
-                "Try it by clicking on the button to your bottom left corner '+ New Project'",
-                new Date("2023-09-20 00:00"),
-                "low",
-                1,
-            ),
-            task("Demo task 2",
-                `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eu tortor mi. Proin in sapien vehicula, 
-                feugiat nunc sit amet, cursus velit. Integer ut nisi semper, fringilla elit ac, rutrum turpis. Vestibulum 
-                lacinia efficitur arcu, vitae pharetra urna sagittis nec. Praesent sodales ornare tortor, at lacinia augue 
-                condimentum et. Duis ut rutrum odio. Maecenas ac tincidunt magna, at finibus est. Donec eu massa id risus 
-                gravida feugiat. Curabitur tincidunt turpis ut nunc facilisis sagittis.
-                Etiam ultrices ultrices erat, vitae porttitor risus posuere quis. Pellentesque a metus posuere, fringilla
-                eros ac, sagittis neque. Vivamus pretium semper arcu. Sed nisi velit, consectetur viverra feugiat vel,
-                dapibus et lacus. Praesent eget tempus dolor. Duis lacinia tristique augue, eu pharetra sapien mattis id.`,
-                new Date("2022-09-04 00:00"),
-                "none",
-                1
-            ),
-        ];
+  // If there was no data in localStorage assign some test data
+  if (projectsHandler.items === null || tasksHandler.items === null) {
+    const testProjectsData = [
+      {
+        id: 0,
+        title: "Home",
+      },
+      {
+        id: 1,
+        title: "Ideal Year (A sample Project)",
+      },
+    ];
+    const testTasksData = [
+      task(
+        "Design a personal vision board",
+        "Capture the goals, values, and images that motivate your long-term direction.",
+        new Date("2025-12-28 00:00"),
+        "none",
+        0
+      ),
+      task(
+        "Map out your ideal year",
+        "Outline the experiences, milestones, and habits you want to cultivate in the coming months.",
+        new Date("2026-01-15 00:00"),
+        "high",
+        0
+      ),
+      task(
+        "Share your latest creation with the world",
+        "Upload your work and let it inspire others to start their own journey.",
+        new Date("2026-02-03 00:00"),
+        "medium",
+        0
+      ),
+      task(
+        "Move your body with intention",
+        "Choose an activity that energizes you and reconnects you with your strength.",
+        new Date("2025-12-10 00:00"),
+        "low",
+        0,
+        true
+      ),
+      task(
+        "Support your wellbeing",
+        "Take what you need today to feel balanced and grounded.",
+        new Date("2025-12-05 00:00"),
+        "none",
+        0
+      ),
+      task(
+        "Start a passion project",
+        "Open a new space dedicated to something you truly enjoy creating.",
+        new Date("2026-01-02 00:00"),
+        "low",
+        1
+      ),
+      task(
+        "Develop a creative concept",
+        "Explore ideas freely and shape them into something meaningful.",
+        new Date("2026-01-22 00:00"),
+        "none",
+        1
+      ),
+      task(
+        "Complete a 30-day creativity streak",
+        "Produce something small each day: writing, sketching, music, or ideas.",
+        new Date("2026-01-25 00:00"),
+        "high",
+        1
+    ),
+    task(
+        "Plan a future-self strategy day",
+        "Map the next 3–5 years and identify the first actionable steps.",
+        new Date("2026-02-18 00:00"),
+        "medium",
+        1
+    ),
+    task(
+        "Declutter one major zone of your life",
+        "Tackle a digital archive, workspace, or physical storage to regain focus.",
+        new Date("2025-12-30 00:00"),
+        "low",
+        1
+    )
+    ];
 
-        localStorage.setItem("projects", JSON.stringify(testProjectsData));
-        localStorage.setItem("tasks", JSON.stringify(testTasksData));
+    localStorage.setItem("projects", JSON.stringify(testProjectsData));
+    localStorage.setItem("tasks", JSON.stringify(testTasksData));
 
-        projectsHandler.items = testProjectsData;
-        tasksHandler.items = testTasksData;
-    }
+    projectsHandler.items = testProjectsData;
+    tasksHandler.items = testTasksData;
+  }
 
-    projectsHandler.init();
-    tasksHandler.init();
-    renderProjects();
+  projectsHandler.init();
+  tasksHandler.init();
+  renderProjects();
 }
 
 function updateProjectsStorage() {
-    localStorage.setItem("projects", JSON.stringify(projectsHandler.items));
+  localStorage.setItem("projects", JSON.stringify(projectsHandler.items));
 }
 
 function updateTasksStorage() {
-    localStorage.setItem("tasks", JSON.stringify(tasksHandler.items));
+  localStorage.setItem("tasks", JSON.stringify(tasksHandler.items));
 }
 
-
-export { 
-    initStorage,
-    updateProjectsStorage,
-    updateTasksStorage,
-}
+export { initStorage, updateProjectsStorage, updateTasksStorage };
