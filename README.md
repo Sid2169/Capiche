@@ -6,6 +6,8 @@
 
 > A modern, lightweight task management application built with vanilla JavaScript, featuring project organization, smart date filtering, and an elegant dark-themed interface.
 
+![Website's Screen Shot](image.png)
+
 [Live Demo](#) • [Report Bug](https://github.com/Sid2169/Capiche/issues) • [Request Feature](https://github.com/Sid2169/Capiche/issues)
 
 ---
