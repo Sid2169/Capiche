@@ -431,8 +431,12 @@ ul, li {
   display: flex;
   gap: 5px;
   align-items: center;
-  fill: hsl(210, 10%, 39%);
+  fill: var(--accent-color);
   transition: 0.1s opacity ease;
+}
+
+.task_actions button svg:hover {
+  fill: var(--color-text-accent);
 }
 
 .task_date {
@@ -592,6 +596,8 @@ ul, li {
 .resp-menu_btn {
   width: 32px;
   height: 32px;
+  color: var(--accent-color);
+  fill: var(--accent-color);
 }
 
 /* --------------------------------------------------------------
