@@ -765,3 +765,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **production build** — Document any manual steps that cannot be automated.
 - **GitHub Pages deployment** — Document any manual steps that cannot be automated.
 - **data import/export** — Prefer small, focused changes over broad rewrites.
+- **priority system** — Check the required environment values before deploying.
