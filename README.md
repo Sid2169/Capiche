@@ -768,3 +768,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **priority system** — Check the required environment values before deploying.
 - **UI modules** — Prefer small, focused changes over broad rewrites.
 - **keyboard shortcuts** — Document any manual steps that cannot be automated.
+- **keyboard shortcuts** — Prefer small, focused changes over broad rewrites.
