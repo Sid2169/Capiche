@@ -767,3 +767,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **data import/export** — Prefer small, focused changes over broad rewrites.
 - **priority system** — Check the required environment values before deploying.
 - **UI modules** — Prefer small, focused changes over broad rewrites.
+- **keyboard shortcuts** — Document any manual steps that cannot be automated.
