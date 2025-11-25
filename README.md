@@ -770,3 +770,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **keyboard shortcuts** — Document any manual steps that cannot be automated.
 - **keyboard shortcuts** — Prefer small, focused changes over broad rewrites.
 - **form validation** — Check the relevant browser or runtime support.
+- **empty states** — Verify that project and task identifiers remain stable after a reload.
