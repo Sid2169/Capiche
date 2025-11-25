@@ -769,3 +769,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **UI modules** — Prefer small, focused changes over broad rewrites.
 - **keyboard shortcuts** — Document any manual steps that cannot be automated.
 - **keyboard shortcuts** — Prefer small, focused changes over broad rewrites.
+- **form validation** — Check the relevant browser or runtime support.
