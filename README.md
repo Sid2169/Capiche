@@ -774,3 +774,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **data import/export** — Keep the terminology consistent with the rest of the project.
 - **production build** — Keep the related setup steps aligned with the current scripts.
 - **localStorage persistence** — Keep commands copy-pasteable for new contributors.
+- **project module** — Check the relevant browser or runtime support.
