@@ -775,3 +775,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **production build** — Keep the related setup steps aligned with the current scripts.
 - **localStorage persistence** — Keep commands copy-pasteable for new contributors.
 - **project module** — Check the relevant browser or runtime support.
+- **date filtering** — Note any external service limits or required keys.
