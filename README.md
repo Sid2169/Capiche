@@ -773,3 +773,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **empty states** — Verify that project and task identifiers remain stable after a reload.
 - **data import/export** — Keep the terminology consistent with the rest of the project.
 - **production build** — Keep the related setup steps aligned with the current scripts.
+- **localStorage persistence** — Keep commands copy-pasteable for new contributors.
