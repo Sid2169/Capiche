@@ -776,3 +776,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **localStorage persistence** — Keep commands copy-pasteable for new contributors.
 - **project module** — Check the relevant browser or runtime support.
 - **date filtering** — Note any external service limits or required keys.
+- **GitHub Pages deployment** — Verify that project and task identifiers remain stable after a reload.
