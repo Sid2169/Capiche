@@ -778,3 +778,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **date filtering** — Note any external service limits or required keys.
 - **GitHub Pages deployment** — Verify that project and task identifiers remain stable after a reload.
 - **UI modules** — Document any manual steps that cannot be automated.
+- **theme handling** — Keep the related setup steps aligned with the current scripts.
