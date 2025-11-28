@@ -645,3 +645,4 @@ If you found this project helpful, please consider giving it a ⭐!
 ## Additional Notes
 
 - **date filtering** — Check the empty state after clearing local storage.
+- **data import/export** — Check the empty state after clearing local storage.
