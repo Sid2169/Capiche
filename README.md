@@ -777,3 +777,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **project module** — Check the relevant browser or runtime support.
 - **date filtering** — Note any external service limits or required keys.
 - **GitHub Pages deployment** — Verify that project and task identifiers remain stable after a reload.
+- **UI modules** — Document any manual steps that cannot be automated.
