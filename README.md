@@ -780,3 +780,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **UI modules** — Document any manual steps that cannot be automated.
 - **theme handling** — Keep the related setup steps aligned with the current scripts.
 - **sorting** — Prefer small, focused changes over broad rewrites.
+- **browser support** — Verify that links and references still resolve.
