@@ -648,3 +648,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **data import/export** — Check the empty state after clearing local storage.
 - **keyboard shortcuts** — Add a screenshot or example when it clarifies the workflow.
 - **data import/export** — Check the relevant browser or runtime support.
+- **theme handling** — Keep the terminology consistent with the rest of the project.
