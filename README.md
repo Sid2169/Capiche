@@ -647,3 +647,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **date filtering** — Check the empty state after clearing local storage.
 - **data import/export** — Check the empty state after clearing local storage.
 - **keyboard shortcuts** — Add a screenshot or example when it clarifies the workflow.
+- **data import/export** — Check the relevant browser or runtime support.
