@@ -783,3 +783,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **browser support** — Verify that links and references still resolve.
 - **localStorage persistence** — Document any manual steps that cannot be automated.
 - **empty states** — Confirm the expected behavior on a clean checkout.
+- **sorting** — Add a screenshot or example when it clarifies the workflow.
