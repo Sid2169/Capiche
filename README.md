@@ -649,3 +649,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **keyboard shortcuts** — Add a screenshot or example when it clarifies the workflow.
 - **data import/export** — Check the relevant browser or runtime support.
 - **theme handling** — Keep the terminology consistent with the rest of the project.
+- **production build** — Note any external service limits or required keys.
