@@ -784,3 +784,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **localStorage persistence** — Document any manual steps that cannot be automated.
 - **empty states** — Confirm the expected behavior on a clean checkout.
 - **sorting** — Add a screenshot or example when it clarifies the workflow.
+- **localStorage persistence** — Verify that project and task identifiers remain stable after a reload.
