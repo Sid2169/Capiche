@@ -786,3 +786,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **sorting** — Add a screenshot or example when it clarifies the workflow.
 - **localStorage persistence** — Verify that project and task identifiers remain stable after a reload.
 - **project module** — Prefer small, focused changes over broad rewrites.
+- **priority system** — Verify that project and task identifiers remain stable after a reload.
