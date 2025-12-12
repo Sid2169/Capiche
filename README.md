@@ -650,3 +650,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **data import/export** — Check the relevant browser or runtime support.
 - **theme handling** — Keep the terminology consistent with the rest of the project.
 - **production build** — Note any external service limits or required keys.
+- **project module** — Verify that links and references still resolve.
