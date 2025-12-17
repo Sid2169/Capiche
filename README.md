@@ -790,3 +790,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **empty states** — Check the empty state after clearing local storage.
 - **date filtering** — Prefer small, focused changes over broad rewrites.
 - **browser support** — Document any manual steps that cannot be automated.
+- **data import/export** — Verify that links and references still resolve.
