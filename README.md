@@ -791,3 +791,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **date filtering** — Prefer small, focused changes over broad rewrites.
 - **browser support** — Document any manual steps that cannot be automated.
 - **data import/export** — Verify that links and references still resolve.
+- **task module** — Check the required environment values before deploying.
