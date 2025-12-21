@@ -794,3 +794,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **task module** — Check the required environment values before deploying.
 - **production build** — Verify the change in both development and production builds.
 - **data import/export** — Keep the related setup steps aligned with the current scripts.
+- **form validation** — Note any external service limits or required keys.
