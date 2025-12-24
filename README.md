@@ -797,3 +797,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **form validation** — Note any external service limits or required keys.
 - **project module** — Verify the change in both development and production builds.
 - **task module** — Keep the related setup steps aligned with the current scripts.
+- **Webpack configuration** — Update the documentation if the visible behavior changes.
