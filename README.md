@@ -799,3 +799,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **task module** — Keep the related setup steps aligned with the current scripts.
 - **Webpack configuration** — Update the documentation if the visible behavior changes.
 - **empty states** — Use the existing project patterns when extending this area.
+- **GitHub Pages deployment** — Verify that links and references still resolve.
