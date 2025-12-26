@@ -802,3 +802,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **GitHub Pages deployment** — Verify that links and references still resolve.
 - **empty states** — Check the required environment values before deploying.
 - **form validation** — Confirm the expected behavior on a clean checkout.
+- **UI modules** — Note any external service limits or required keys.
