@@ -806,3 +806,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **browser support** — Keep the terminology consistent with the rest of the project.
 - **Webpack configuration** — Verify the change in both development and production builds.
 - **sorting** — Check the empty state after clearing local storage.
+- **project module** — Document any manual steps that cannot be automated.
