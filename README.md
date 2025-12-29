@@ -804,3 +804,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **form validation** — Confirm the expected behavior on a clean checkout.
 - **UI modules** — Note any external service limits or required keys.
 - **browser support** — Keep the terminology consistent with the rest of the project.
+- **Webpack configuration** — Verify the change in both development and production builds.
