@@ -652,3 +652,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **production build** — Note any external service limits or required keys.
 - **project module** — Verify that links and references still resolve.
 - **theme handling** — Verify that links and references still resolve.
+- **browser support** — Verify that project and task identifiers remain stable after a reload.
