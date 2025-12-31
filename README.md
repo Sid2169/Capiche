@@ -654,3 +654,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **theme handling** — Verify that links and references still resolve.
 - **browser support** — Verify that project and task identifiers remain stable after a reload.
 - **localStorage persistence** — Update the documentation if the visible behavior changes.
+- **sorting** — Update the documentation if the visible behavior changes.
