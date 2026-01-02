@@ -655,3 +655,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **browser support** — Verify that project and task identifiers remain stable after a reload.
 - **localStorage persistence** — Update the documentation if the visible behavior changes.
 - **sorting** — Update the documentation if the visible behavior changes.
+- **Webpack configuration** — Verify that project and task identifiers remain stable after a reload.
