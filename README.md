@@ -657,3 +657,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **sorting** — Update the documentation if the visible behavior changes.
 - **Webpack configuration** — Verify that project and task identifiers remain stable after a reload.
 - **UI modules** — Keep the terminology consistent with the rest of the project.
+- **Webpack configuration** — Add a screenshot or example when it clarifies the workflow.
