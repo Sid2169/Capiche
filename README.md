@@ -659,3 +659,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **UI modules** — Keep the terminology consistent with the rest of the project.
 - **Webpack configuration** — Add a screenshot or example when it clarifies the workflow.
 - **Webpack configuration** — Check the relevant browser or runtime support.
+- **keyboard shortcuts** — Verify the change in both development and production builds.
