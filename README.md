@@ -656,3 +656,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **localStorage persistence** — Update the documentation if the visible behavior changes.
 - **sorting** — Update the documentation if the visible behavior changes.
 - **Webpack configuration** — Verify that project and task identifiers remain stable after a reload.
+- **UI modules** — Keep the terminology consistent with the rest of the project.
