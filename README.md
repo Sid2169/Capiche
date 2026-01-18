@@ -661,3 +661,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **Webpack configuration** — Check the relevant browser or runtime support.
 - **keyboard shortcuts** — Verify the change in both development and production builds.
 - **task module** — Check the relevant browser or runtime support.
+- **accessibility** — Document any manual steps that cannot be automated.
