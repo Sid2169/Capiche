@@ -662,3 +662,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **keyboard shortcuts** — Verify the change in both development and production builds.
 - **task module** — Check the relevant browser or runtime support.
 - **accessibility** — Document any manual steps that cannot be automated.
+- **storage layer** — Update the documentation if the visible behavior changes.
