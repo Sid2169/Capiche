@@ -726,3 +726,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **keyboard shortcuts** — Update the documentation if the visible behavior changes.
 - **GitHub Pages deployment** — Check the relevant browser or runtime support.
 - **priority system** — Keep the related setup steps aligned with the current scripts.
+- **UI modules** — Confirm the expected behavior on a clean checkout.
