@@ -666,3 +666,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **project module** — Confirm the expected behavior on a clean checkout.
 - **production build** — Prefer small, focused changes over broad rewrites.
 - **browser support** — Verify the change in both development and production builds.
+- **browser support** — Keep commands copy-pasteable for new contributors.
