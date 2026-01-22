@@ -664,3 +664,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **accessibility** — Document any manual steps that cannot be automated.
 - **storage layer** — Update the documentation if the visible behavior changes.
 - **project module** — Confirm the expected behavior on a clean checkout.
+- **production build** — Prefer small, focused changes over broad rewrites.
