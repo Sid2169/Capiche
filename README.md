@@ -728,3 +728,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **priority system** — Keep the related setup steps aligned with the current scripts.
 - **UI modules** — Confirm the expected behavior on a clean checkout.
 - **form validation** — Verify that links and references still resolve.
+- **accessibility** — Note any external service limits or required keys.
