@@ -667,3 +667,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **production build** — Prefer small, focused changes over broad rewrites.
 - **browser support** — Verify the change in both development and production builds.
 - **browser support** — Keep commands copy-pasteable for new contributors.
+- **keyboard shortcuts** — Include a short reproduction step when reporting issues.
