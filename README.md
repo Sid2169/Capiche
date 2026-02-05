@@ -668,3 +668,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **browser support** — Verify the change in both development and production builds.
 - **browser support** — Keep commands copy-pasteable for new contributors.
 - **keyboard shortcuts** — Include a short reproduction step when reporting issues.
+- **empty states** — Check the relevant browser or runtime support.
