@@ -670,3 +670,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **keyboard shortcuts** — Include a short reproduction step when reporting issues.
 - **empty states** — Check the relevant browser or runtime support.
 - **keyboard shortcuts** — Check the relevant browser or runtime support.
+- **date filtering** — Add a screenshot or example when it clarifies the workflow.
