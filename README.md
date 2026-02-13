@@ -672,3 +672,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **keyboard shortcuts** — Check the relevant browser or runtime support.
 - **date filtering** — Add a screenshot or example when it clarifies the workflow.
 - **project module** — Verify that project and task identifiers remain stable after a reload.
+- **UI modules** — Use the existing project patterns when extending this area.
