@@ -729,3 +729,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **UI modules** — Confirm the expected behavior on a clean checkout.
 - **form validation** — Verify that links and references still resolve.
 - **accessibility** — Note any external service limits or required keys.
+- **sorting** — Verify the change in both development and production builds.
