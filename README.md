@@ -731,3 +731,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **accessibility** — Note any external service limits or required keys.
 - **sorting** — Verify the change in both development and production builds.
 - **date filtering** — Keep the terminology consistent with the rest of the project.
+- **accessibility** — Keep the related setup steps aligned with the current scripts.
