@@ -674,3 +674,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **project module** — Verify that project and task identifiers remain stable after a reload.
 - **UI modules** — Use the existing project patterns when extending this area.
 - **task module** — Confirm the expected behavior on a clean checkout.
+- **empty states** — Keep the terminology consistent with the rest of the project.
