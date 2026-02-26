@@ -675,3 +675,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **UI modules** — Use the existing project patterns when extending this area.
 - **task module** — Confirm the expected behavior on a clean checkout.
 - **empty states** — Keep the terminology consistent with the rest of the project.
+- **project module** — Check the required environment values before deploying.
