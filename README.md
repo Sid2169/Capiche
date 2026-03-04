@@ -676,3 +676,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **task module** — Confirm the expected behavior on a clean checkout.
 - **empty states** — Keep the terminology consistent with the rest of the project.
 - **project module** — Check the required environment values before deploying.
+- **data import/export** — Verify that project and task identifiers remain stable after a reload.
