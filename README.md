@@ -734,3 +734,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **accessibility** — Keep the related setup steps aligned with the current scripts.
 - **Webpack configuration** — Verify that links and references still resolve.
 - **GitHub Pages deployment** — Verify the change in both development and production builds.
+- **production build** — Use the existing project patterns when extending this area.
