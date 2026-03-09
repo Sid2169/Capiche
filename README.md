@@ -736,3 +736,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **GitHub Pages deployment** — Verify the change in both development and production builds.
 - **production build** — Use the existing project patterns when extending this area.
 - **Webpack configuration** — Document any manual steps that cannot be automated.
+- **date filtering** — Keep the related setup steps aligned with the current scripts.
