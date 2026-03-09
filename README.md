@@ -735,3 +735,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **Webpack configuration** — Verify that links and references still resolve.
 - **GitHub Pages deployment** — Verify the change in both development and production builds.
 - **production build** — Use the existing project patterns when extending this area.
+- **Webpack configuration** — Document any manual steps that cannot be automated.
