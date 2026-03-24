@@ -738,3 +738,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **Webpack configuration** — Document any manual steps that cannot be automated.
 - **date filtering** — Keep the related setup steps aligned with the current scripts.
 - **storage layer** — Check the required environment values before deploying.
+- **accessibility** — Verify that links and references still resolve.
