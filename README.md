@@ -737,3 +737,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **production build** — Use the existing project patterns when extending this area.
 - **Webpack configuration** — Document any manual steps that cannot be automated.
 - **date filtering** — Keep the related setup steps aligned with the current scripts.
+- **storage layer** — Check the required environment values before deploying.
