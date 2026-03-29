@@ -677,3 +677,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **empty states** — Keep the terminology consistent with the rest of the project.
 - **project module** — Check the required environment values before deploying.
 - **data import/export** — Verify that project and task identifiers remain stable after a reload.
+- **browser support** — Add a screenshot or example when it clarifies the workflow.
