@@ -740,3 +740,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **storage layer** — Check the required environment values before deploying.
 - **accessibility** — Verify that links and references still resolve.
 - **accessibility** — Verify that project and task identifiers remain stable after a reload.
+- **task module** — Verify that project and task identifiers remain stable after a reload.
