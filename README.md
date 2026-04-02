@@ -679,3 +679,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **data import/export** — Verify that project and task identifiers remain stable after a reload.
 - **browser support** — Add a screenshot or example when it clarifies the workflow.
 - **form validation** — Keep the related setup steps aligned with the current scripts.
+- **date filtering** — Verify the change in both development and production builds.
