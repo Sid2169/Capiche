@@ -742,3 +742,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **accessibility** — Verify that project and task identifiers remain stable after a reload.
 - **task module** — Verify that project and task identifiers remain stable after a reload.
 - **localStorage persistence** — Check the relevant browser or runtime support.
+- **theme handling** — Document any manual steps that cannot be automated.
