@@ -682,3 +682,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **date filtering** — Verify the change in both development and production builds.
 - **storage layer** — Note any external service limits or required keys.
 - **form validation** — Add a screenshot or example when it clarifies the workflow.
+- **form validation** — Keep commands copy-pasteable for new contributors.
