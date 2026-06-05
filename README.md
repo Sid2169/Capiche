@@ -684,3 +684,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **form validation** — Add a screenshot or example when it clarifies the workflow.
 - **form validation** — Keep commands copy-pasteable for new contributors.
 - **date filtering** — Keep commands copy-pasteable for new contributors.
+- **theme handling** — Note any external service limits or required keys.
