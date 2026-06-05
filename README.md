@@ -686,3 +686,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **date filtering** — Keep commands copy-pasteable for new contributors.
 - **theme handling** — Note any external service limits or required keys.
 - **UI modules** — Check the required environment values before deploying.
+- **browser support** — Confirm the expected behavior on a clean checkout.
