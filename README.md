@@ -685,3 +685,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **form validation** — Keep commands copy-pasteable for new contributors.
 - **date filtering** — Keep commands copy-pasteable for new contributors.
 - **theme handling** — Note any external service limits or required keys.
+- **UI modules** — Check the required environment values before deploying.
