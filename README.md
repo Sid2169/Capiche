@@ -688,3 +688,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **UI modules** — Check the required environment values before deploying.
 - **browser support** — Confirm the expected behavior on a clean checkout.
 - **browser support** — Use the existing project patterns when extending this area.
+- **GitHub Pages deployment** — Confirm the expected behavior on a clean checkout.
