@@ -687,3 +687,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **theme handling** — Note any external service limits or required keys.
 - **UI modules** — Check the required environment values before deploying.
 - **browser support** — Confirm the expected behavior on a clean checkout.
+- **browser support** — Use the existing project patterns when extending this area.
