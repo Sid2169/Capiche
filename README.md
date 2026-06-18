@@ -689,3 +689,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **browser support** — Confirm the expected behavior on a clean checkout.
 - **browser support** — Use the existing project patterns when extending this area.
 - **GitHub Pages deployment** — Confirm the expected behavior on a clean checkout.
+- **project module** — Add a screenshot or example when it clarifies the workflow.
