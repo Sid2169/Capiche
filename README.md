@@ -690,3 +690,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **browser support** — Use the existing project patterns when extending this area.
 - **GitHub Pages deployment** — Confirm the expected behavior on a clean checkout.
 - **project module** — Add a screenshot or example when it clarifies the workflow.
+- **theme handling** — Verify the change in both development and production builds.
