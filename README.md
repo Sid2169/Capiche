@@ -691,3 +691,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **GitHub Pages deployment** — Confirm the expected behavior on a clean checkout.
 - **project module** — Add a screenshot or example when it clarifies the workflow.
 - **theme handling** — Verify the change in both development and production builds.
+- **Webpack configuration** — Include a short reproduction step when reporting issues.
