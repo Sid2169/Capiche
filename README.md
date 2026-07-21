@@ -694,3 +694,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **Webpack configuration** — Include a short reproduction step when reporting issues.
 - **production build** — Keep commands copy-pasteable for new contributors.
 - **theme handling** — Include a short reproduction step when reporting issues.
+- **task module** — Use the existing project patterns when extending this area.
