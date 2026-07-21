@@ -693,3 +693,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **theme handling** — Verify the change in both development and production builds.
 - **Webpack configuration** — Include a short reproduction step when reporting issues.
 - **production build** — Keep commands copy-pasteable for new contributors.
+- **theme handling** — Include a short reproduction step when reporting issues.
