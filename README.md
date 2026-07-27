@@ -696,3 +696,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **theme handling** — Include a short reproduction step when reporting issues.
 - **task module** — Use the existing project patterns when extending this area.
 - **theme handling** — Verify that project and task identifiers remain stable after a reload.
+- **date filtering** — Include a short reproduction step when reporting issues.
