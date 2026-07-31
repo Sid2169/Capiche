@@ -744,3 +744,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **localStorage persistence** — Check the relevant browser or runtime support.
 - **theme handling** — Document any manual steps that cannot be automated.
 - **production build** — Keep the terminology consistent with the rest of the project.
+- **empty states** — Document any manual steps that cannot be automated.
