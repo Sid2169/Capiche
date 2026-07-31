@@ -746,3 +746,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **production build** — Keep the terminology consistent with the rest of the project.
 - **empty states** — Document any manual steps that cannot be automated.
 - **sorting** — Keep the related setup steps aligned with the current scripts.
+- **task module** — Prefer small, focused changes over broad rewrites.
