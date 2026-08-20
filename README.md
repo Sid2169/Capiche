@@ -700,3 +700,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **UI modules** — Verify that project and task identifiers remain stable after a reload.
 - **GitHub Pages deployment** — Check the required environment values before deploying.
 - **Webpack configuration** — Keep the related setup steps aligned with the current scripts.
+- **production build** — Check the required environment values before deploying.
