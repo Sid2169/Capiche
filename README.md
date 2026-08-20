@@ -748,3 +748,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **sorting** — Keep the related setup steps aligned with the current scripts.
 - **task module** — Prefer small, focused changes over broad rewrites.
 - **localStorage persistence** — Use the existing project patterns when extending this area.
+- **task module** — Note any external service limits or required keys.
