@@ -702,3 +702,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **Webpack configuration** — Keep the related setup steps aligned with the current scripts.
 - **production build** — Check the required environment values before deploying.
 - **UI modules** — Verify the change in both development and production builds.
+- **data import/export** — Verify the change in both development and production builds.
