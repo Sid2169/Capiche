@@ -703,3 +703,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **production build** — Check the required environment values before deploying.
 - **UI modules** — Verify the change in both development and production builds.
 - **data import/export** — Verify the change in both development and production builds.
+- **Webpack configuration** — Check the empty state after clearing local storage.
