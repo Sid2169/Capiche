@@ -8,7 +8,11 @@ import { format, isToday, isThisWeek, isValid, compareAsc, compareDesc, isPast }
 import { tasksHandler, task } from "../tasks.js";
 import { projectsHandler } from "../projects.js";
 import { activeTab } from "./ui-projects.js";
-import { updateTasksStorage } from "../storage.js";
+import {
+  createTaskStorage,
+  updateTaskStorage,
+  deleteTaskStorage,
+} from "../storage.js";
 import { darkOverlay } from "./ui-menu.js";
 import emptyMessageImage from "../../images/walking-outside.png";
 
@@ -161,23 +165,24 @@ function getNewTaskData(e) {
  * @param {string} priority 
  */
 function composeNewTask(title, details, date, priority) {
-    const projectId = projectsHandler.items[activeTab].id;
+    const projectId = projectsHandler.items[activeTab]._id;
     const newTask = task(title, details, date, priority, projectId);
-    const newTaskIndex = tasksHandler.addTask(newTask);
-    
-    updateTasksStorage();
 
-    // Handle "Empty State" removal
-    if (uncompletedTaskCount === 0) cleanUncompletedTasksContainer();
-    uncompletedTaskCount++;
+    createTaskStorage(newTask).then((newTaskIndex) => {
+        if (newTaskIndex === null) return;
 
-    // If sorting is active, re-render entire list to maintain order
-    if (sortTasksBtn.dataset.sort === "asc" || sortTasksBtn.dataset.sort === "desc") {
-        return renderTasks();
-    }
+        // Handle "Empty State" removal
+        if (uncompletedTaskCount === 0) cleanUncompletedTasksContainer();
+        uncompletedTaskCount++;
 
-    // Otherwise just prepend
-    tasksContainer.prepend(createTaskUI(newTask, newTaskIndex));
+        // If sorting is active, re-render entire list to maintain order
+        if (sortTasksBtn.dataset.sort === "asc" || sortTasksBtn.dataset.sort === "desc") {
+            return renderTasks();
+        }
+
+        // Otherwise just prepend
+        tasksContainer.prepend(createTaskUI(tasksHandler.items[newTaskIndex], newTaskIndex));
+    });
 }
 
 /* ==========================================================================
@@ -314,18 +319,29 @@ function markTaskCompletedUI(target, taskIndex) {
     const taskNode = target.closest("div.task");
     taskNode.classList.toggle("completed");
 
-    const completedState = tasksHandler.toggleCompletedState(taskIndex);
-    updateTasksStorage();
+    const currTask = tasksHandler.items[taskIndex];
+    const completedState = currTask.completed;
+    currTask.completed = !completedState;
 
-    if (completedState === true) {
-        uncompletedTaskCount--;
-        completedTasksContainer.prepend(taskNode);
-    } else {
-        uncompletedTaskCount++;
-        renderTasks();
-    }
-    
-    renderNoTasksMessage();
+    updateTaskStorage(currTask._id, { completed: currTask.completed }).then(
+      (success) => {
+        if (!success) {
+          currTask.completed = !currTask.completed;
+          taskNode.classList.toggle("completed");
+          return;
+        }
+
+        if (completedState === false) {
+            uncompletedTaskCount--;
+            completedTasksContainer.prepend(taskNode);
+        } else {
+            uncompletedTaskCount++;
+            renderTasks();
+        }
+
+        renderNoTasksMessage();
+      }
+    );
 }
 
 /**
@@ -348,10 +364,12 @@ function deleteTask() {
     const confirmed = window.confirm("Delete this task?");
     if (!confirmed) return;
 
-    tasksHandler.removeTask(currTaskInfo.index);
+    const currTask = tasksHandler.items[currTaskInfo.index];
+    if (!currTask) return;
 
-    updateTasksStorage();
-    renderTasks();
+    deleteTaskStorage(currTask._id).then(() => {
+        renderTasks();
+    });
 }
 
 /* ==========================================================================
@@ -407,9 +425,15 @@ function editTask(e) {
         currTask.date = null;
     }
 
-    updateTasksStorage();
-    renderTasks();
-    closeModal();
+    updateTaskStorage(currTask._id, {
+        title: currTask.title,
+        details: currTask.details,
+        priority: currTask.priority,
+        date: currTask.date,
+    }).then(() => {
+        renderTasks();
+        closeModal();
+    });
 }
 
 /* ==========================================================================
@@ -470,10 +494,10 @@ function filterTasks() {
                 return isThisWeek(task.date);
             });
         default:
-            const id = projectsHandler.items[activeTab].id;
+            const projectId = projectsHandler.items[activeTab]._id;
             return tasksHandler.items.filter((task, index) => {
                 task.arrIndex = index;
-                return task.projectIndex === id;
+                return task.project === projectId;
             });
     }
 }

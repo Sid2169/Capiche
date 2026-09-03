@@ -9,9 +9,12 @@
  */
 
 import { renderTasks, resetSortTasksBtn } from "./ui-tasks.js";
-import { createNewProject, projectsHandler } from "../projects.js";
-import { tasksHandler } from "../tasks.js";
-import { updateProjectsStorage, updateTasksStorage } from "../storage.js";
+import { projectsHandler } from "../projects.js";
+import {
+  createProjectStorage,
+  updateProjectStorage,
+  deleteProjectStorage,
+} from "../storage.js";
 import { sidebar } from "./ui-menu.js";
 
 // ------------------------------------------------------
@@ -65,16 +68,30 @@ newProjectForm.addEventListener("submit", (e) => {
 });
 
 // ------------------------------------------------------
+// Logout
+// ------------------------------------------------------
+
+const logoutBtn = document.getElementById("logoutBtn");
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userId");
+    window.location.href = "/login.html";
+  });
+}
+
+// ------------------------------------------------------
 // Project Creation
 // ------------------------------------------------------
 
-function composeNewProject(title) {
-  const index = createNewProject(title);
-  const projectUI = createProjectUI(projectsHandler.items[index], index);
+async function composeNewProject(title) {
+  const project = await createProjectStorage(title);
+  if (!project) return;
+
+  const index = projectsHandler.items.length - 1;
+  const projectUI = createProjectUI(project, index);
 
   sidebarUserProjects.prepend(projectUI);
-  updateProjectsStorage();
-
   changeProject(projectUI, index);
 }
 
@@ -130,19 +147,18 @@ function createProjectUI(project, projectIndex) {
 // ------------------------------------------------------
 
 function deleteProject(index) {
-  const projectId = projectsHandler.items[index].id;
+  const project = projectsHandler.items[index];
+  if (!project) return;
+  const projectId = project._id;
 
   const confirmed = window.confirm(
     "Are you sure you want to delete this project? This action cannot be undone."
   );
   if (!confirmed) return;
 
-  tasksHandler.removeProjectTasks(projectId);
-  projectsHandler.removeProject(index);
-
-  updateProjectsStorage();
-  updateTasksStorage();
-  renderProjects();
+  deleteProjectStorage(projectId).then(() => {
+    renderProjects();
+  });
 }
 
 // ------------------------------------------------------
@@ -168,7 +184,7 @@ function changeProject(projectNode, projectIndex) {
 
     newTaskContainer.classList.add("active");
 
-    if (project.id !== 0) {
+    if (project.title !== "Home") {
       workspaceTitle.addEventListener("click", updateProjectTitle);
     }
   }
@@ -208,7 +224,7 @@ function updateProjectTitle() {
     currProject.title = value;
 
     input.remove();
-    updateProjectsStorage();
+    updateProjectStorage(currProject._id, value);
     workspaceTitle.classList.add("active");
   });
 
