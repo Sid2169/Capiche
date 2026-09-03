@@ -5,13 +5,21 @@
  */
 
 /* ==========================================================================
+   AUTH GUARD
+   ========================================================================== */
+
+// Check if user is authenticated BEFORE loading anything
+const token = localStorage.getItem("token");
+
+if (!token) {
+    window.location.href = "/login.html";
+}
+
+/* ==========================================================================
    ASSETS & STYLES
    ========================================================================== */
 
-// Global application styles
 import "./style.css";
-
-// Static assets (required for bundlers like Webpack to process them)
 import "./images/GitHub-Mark.png";
 
 /* ==========================================================================
@@ -24,10 +32,6 @@ import * as storage from "./modules/storage.js";
    INITIALIZATION
    ========================================================================== */
 
-/**
- * Bootstraps the application.
- * Initializes the storage engine to load saved data.
- */
 const initApp = () => {
     storage.initStorage();
 };

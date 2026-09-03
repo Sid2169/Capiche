@@ -9,7 +9,7 @@
 import { tasksHandler, task } from "./tasks.js";
 import { projectsHandler } from "./projects.js";
 import { renderProjects } from "./ui/ui-projects.js";
-import { apiFetch } from "./api.js";
+import { apiFetch } from "../api.js";
 
 /**
  * Loads project/task data from API.
