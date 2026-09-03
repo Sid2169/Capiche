@@ -9,7 +9,16 @@ const taskRoutes = require('./routes/tasks');       // ✅ add
 
 const app = express();
 
-app.use(cors());
+// CORS: restrict to the configured frontend origin when CORS_ORIGIN is set,
+// otherwise allow all origins (dev convenience).
+const corsOrigin = process.env.CORS_ORIGIN;
+app.use(
+  cors(
+    corsOrigin
+      ? { origin: corsOrigin.split(',').map((o) => o.trim()) }
+      : undefined
+  )
+);
 app.use(express.json());
 
 
