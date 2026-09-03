@@ -32,21 +32,10 @@ export const tasksHandler = {
 
   /**
    * Remove all tasks belonging to a specific project.
-   * @param {number} id - Project ID to filter out.
+   * @param {string} projectId - MongoDB project _id to filter out.
    */
-  removeProjectTasks(id) {
-    this.items = this.items.filter((task) => task.projectIndex !== id);
-  },
-
-  /**
-   * Toggle `completed` state for a given task index.
-   * @param {number} index - Task index.
-   * @returns {boolean} Updated completion state.
-   */
-  toggleCompletedState(index) {
-    const current = this.items[index].completed;
-    this.items[index].completed = !current;
-    return this.items[index].completed;
+  removeProjectTasks(projectId) {
+    this.items = this.items.filter((task) => task.project !== projectId);
   },
 
   /**
@@ -66,7 +55,7 @@ export const tasksHandler = {
  * @param {string} details
  * @param {Date|null} date
  * @param {string} priority - e.g., "low", "medium", "high", "none"
- * @param {number} projectIndex - Parent project ID
+ * @param {string} project - MongoDB project _id
  * @param {boolean} [completed=false]
  * @returns {object}
  */
@@ -75,7 +64,7 @@ export const task = (
   details,
   date,
   priority,
-  projectIndex,
+  project,
   completed = false
 ) => ({
   title,
@@ -83,5 +72,5 @@ export const task = (
   date,
   priority,
   completed,
-  projectIndex,
+  project,
 });
