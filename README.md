@@ -705,3 +705,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **data import/export** — Verify the change in both development and production builds.
 - **Webpack configuration** — Check the empty state after clearing local storage.
 - **storage layer** — Prefer small, focused changes over broad rewrites.
+- **keyboard shortcuts** — Note any external service limits or required keys.
