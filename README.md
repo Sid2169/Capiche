@@ -706,3 +706,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **Webpack configuration** — Check the empty state after clearing local storage.
 - **storage layer** — Prefer small, focused changes over broad rewrites.
 - **keyboard shortcuts** — Note any external service limits or required keys.
+- **date filtering** — Confirm the expected behavior on a clean checkout.
