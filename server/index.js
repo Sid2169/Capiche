@@ -9,14 +9,16 @@ const taskRoutes = require('./routes/tasks');       // ✅ add
 
 const app = express();
 
-// CORS: restrict to the configured frontend origin when CORS_ORIGIN is set,
-// otherwise allow all origins (dev convenience).
+// CORS: when CORS_ORIGIN is set (comma-separated), restrict to those origins.
+// Otherwise reflect whatever Origin the browser sends — auth is handled by
+// the JWT (not by cookies), so reflecting any origin is safe and keeps the
+// frontend working from GitHub Pages and localhost without exact-match setup.
 const corsOrigin = process.env.CORS_ORIGIN;
 app.use(
   cors(
     corsOrigin
       ? { origin: corsOrigin.split(',').map((o) => o.trim()) }
-      : undefined
+      : { origin: true }
   )
 );
 app.use(express.json());
