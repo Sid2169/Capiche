@@ -78,21 +78,10 @@ const tasksHandler = {
 
   /**
    * Remove all tasks belonging to a specific project.
-   * @param {number} id - Project ID to filter out.
+   * @param {string} projectId - MongoDB project _id to filter out.
    */
-  removeProjectTasks(id) {
-    this.items = this.items.filter((task) => task.projectIndex !== id);
-  },
-
-  /**
-   * Toggle `completed` state for a given task index.
-   * @param {number} index - Task index.
-   * @returns {boolean} Updated completion state.
-   */
-  toggleCompletedState(index) {
-    const current = this.items[index].completed;
-    this.items[index].completed = !current;
-    return this.items[index].completed;
+  removeProjectTasks(projectId) {
+    this.items = this.items.filter((task) => task.project !== projectId);
   },
 
   /**
@@ -112,7 +101,7 @@ const tasksHandler = {
  * @param {string} details
  * @param {Date|null} date
  * @param {string} priority - e.g., "low", "medium", "high", "none"
- * @param {number} projectIndex - Parent project ID
+ * @param {string} project - MongoDB project _id
  * @param {boolean} [completed=false]
  * @returns {object}
  */
@@ -121,7 +110,7 @@ const task = (
   details,
   date,
   priority,
-  projectIndex,
+  project,
   completed = false
 ) => ({
   title,
@@ -129,7 +118,7 @@ const task = (
   date,
   priority,
   completed,
-  projectIndex,
+  project,
 });
 
 ;// ./src/modules/projects.js
@@ -137,24 +126,20 @@ const task = (
  * @module src/modules/project.js
  *
  * @description
- * Manages project items and their identifiers.
+ * Manages project items in memory.
+ * Projects use MongoDB's _id (string) as identifier.
  */
 
-/// Central handler for project creation, storage, and indexing
 const projectsHandler = {
-  /** @type {Array<object>} List of stored projects */
+  /** @type {Array<object>} List of stored projects {_id, title} */
   items: [],
-
-  /** @type {number} Tracks the highest assigned project ID */
-  projectIdCount: 0,
 
   /**
    * Adds a project object to the collection.
-   * @param {object} project - A project object { id, title }.
+   * @param {object} project - A project object {_id, title} from the API.
    * @returns {number} Index where the project was inserted.
    */
   addProject(project) {
-    // push returns new length → subtract 1 to get index
     return this.items.push(project) - 1;
   },
 
@@ -166,40 +151,6 @@ const projectsHandler = {
   removeProject(index) {
     return this.items.splice(index, 1);
   },
-
-  /**
-   * Initializes internal ID counter based on existing project data.
-   * Ensures new projects continue from the highest existing ID.
-   */
-  init() {
-    this.projectIdCount = this.items.reduce(
-      (highest, curr) => (curr.id > highest ? curr.id : highest),
-      0
-    );
-  },
-};
-
-/**
- * Factory function for project objects.
- * @param {number} id - Unique identifier.
- * @param {string} title - Project title.
- * @returns {{id: number, title: string}}
- */
-const createProject = (id, title) => ({ id, title });
-
-/**
- * Creates and stores a new project.
- * @param {string} title - Title of the new project.
- * @returns {number} Index where the project was inserted.
- */
-const createNewProject = (title) => {
-  // Increment ID counter for the next project
-  projectsHandler.projectIdCount++;
-
-  const newProject = createProject(projectsHandler.projectIdCount, title);
-  const index = projectsHandler.addProject(newProject);
-
-  return index;
 };
 
 ;// ./node_modules/@babel/runtime/helpers/esm/typeof.js
@@ -3076,23 +3027,24 @@ function getNewTaskData(e) {
  * @param {string} priority 
  */
 function composeNewTask(title, details, date, priority) {
-    const projectId = projectsHandler.items[activeTab].id;
+    const projectId = projectsHandler.items[activeTab]._id;
     const newTask = task(title, details, date, priority, projectId);
-    const newTaskIndex = tasksHandler.addTask(newTask);
-    
-    updateTasksStorage();
 
-    // Handle "Empty State" removal
-    if (uncompletedTaskCount === 0) cleanUncompletedTasksContainer();
-    uncompletedTaskCount++;
+    createTaskStorage(newTask).then((newTaskIndex) => {
+        if (newTaskIndex === null) return;
 
-    // If sorting is active, re-render entire list to maintain order
-    if (sortTasksBtn.dataset.sort === "asc" || sortTasksBtn.dataset.sort === "desc") {
-        return renderTasks();
-    }
+        // Handle "Empty State" removal
+        if (uncompletedTaskCount === 0) cleanUncompletedTasksContainer();
+        uncompletedTaskCount++;
 
-    // Otherwise just prepend
-    tasksContainer.prepend(createTaskUI(newTask, newTaskIndex));
+        // If sorting is active, re-render entire list to maintain order
+        if (sortTasksBtn.dataset.sort === "asc" || sortTasksBtn.dataset.sort === "desc") {
+            return renderTasks();
+        }
+
+        // Otherwise just prepend
+        tasksContainer.prepend(createTaskUI(tasksHandler.items[newTaskIndex], newTaskIndex));
+    });
 }
 
 /* ==========================================================================
@@ -3229,18 +3181,29 @@ function markTaskCompletedUI(target, taskIndex) {
     const taskNode = target.closest("div.task");
     taskNode.classList.toggle("completed");
 
-    const completedState = tasksHandler.toggleCompletedState(taskIndex);
-    updateTasksStorage();
+    const currTask = tasksHandler.items[taskIndex];
+    const completedState = currTask.completed;
+    currTask.completed = !completedState;
 
-    if (completedState === true) {
-        uncompletedTaskCount--;
-        completedTasksContainer.prepend(taskNode);
-    } else {
-        uncompletedTaskCount++;
-        renderTasks();
-    }
-    
-    renderNoTasksMessage();
+    updateTaskStorage(currTask._id, { completed: currTask.completed }).then(
+      (success) => {
+        if (!success) {
+          currTask.completed = !currTask.completed;
+          taskNode.classList.toggle("completed");
+          return;
+        }
+
+        if (completedState === false) {
+            uncompletedTaskCount--;
+            completedTasksContainer.prepend(taskNode);
+        } else {
+            uncompletedTaskCount++;
+            renderTasks();
+        }
+
+        renderNoTasksMessage();
+      }
+    );
 }
 
 /**
@@ -3263,10 +3226,12 @@ function deleteTask() {
     const confirmed = window.confirm("Delete this task?");
     if (!confirmed) return;
 
-    tasksHandler.removeTask(currTaskInfo.index);
+    const currTask = tasksHandler.items[currTaskInfo.index];
+    if (!currTask) return;
 
-    updateTasksStorage();
-    renderTasks();
+    deleteTaskStorage(currTask._id).then(() => {
+        renderTasks();
+    });
 }
 
 /* ==========================================================================
@@ -3322,9 +3287,15 @@ function editTask(e) {
         currTask.date = null;
     }
 
-    updateTasksStorage();
-    renderTasks();
-    closeModal();
+    updateTaskStorage(currTask._id, {
+        title: currTask.title,
+        details: currTask.details,
+        priority: currTask.priority,
+        date: currTask.date,
+    }).then(() => {
+        renderTasks();
+        closeModal();
+    });
 }
 
 /* ==========================================================================
@@ -3385,10 +3356,10 @@ function filterTasks() {
                 return isThisWeek(task.date);
             });
         default:
-            const id = projectsHandler.items[activeTab].id;
+            const projectId = projectsHandler.items[activeTab]._id;
             return tasksHandler.items.filter((task, index) => {
                 task.arrIndex = index;
-                return task.projectIndex === id;
+                return task.project === projectId;
             });
     }
 }
@@ -3552,7 +3523,6 @@ editTaskForm.reset();
 
 
 
-
 // ------------------------------------------------------
 // State
 // ------------------------------------------------------
@@ -3604,16 +3574,30 @@ newProjectForm.addEventListener("submit", (e) => {
 });
 
 // ------------------------------------------------------
+// Logout
+// ------------------------------------------------------
+
+const logoutBtn = document.getElementById("logoutBtn");
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userId");
+    window.location.href = "./login.html";
+  });
+}
+
+// ------------------------------------------------------
 // Project Creation
 // ------------------------------------------------------
 
-function composeNewProject(title) {
-  const index = createNewProject(title);
-  const projectUI = createProjectUI(projectsHandler.items[index], index);
+async function composeNewProject(title) {
+  const project = await createProjectStorage(title);
+  if (!project) return;
+
+  const index = projectsHandler.items.length - 1;
+  const projectUI = createProjectUI(project, index);
 
   sidebarUserProjects.prepend(projectUI);
-  updateProjectsStorage();
-
   changeProject(projectUI, index);
 }
 
@@ -3669,19 +3653,18 @@ function createProjectUI(project, projectIndex) {
 // ------------------------------------------------------
 
 function deleteProject(index) {
-  const projectId = projectsHandler.items[index].id;
+  const project = projectsHandler.items[index];
+  if (!project) return;
+  const projectId = project._id;
 
   const confirmed = window.confirm(
     "Are you sure you want to delete this project? This action cannot be undone."
   );
   if (!confirmed) return;
 
-  tasksHandler.removeProjectTasks(projectId);
-  projectsHandler.removeProject(index);
-
-  updateProjectsStorage();
-  updateTasksStorage();
-  renderProjects();
+  deleteProjectStorage(projectId).then(() => {
+    renderProjects();
+  });
 }
 
 // ------------------------------------------------------
@@ -3707,7 +3690,7 @@ function changeProject(projectNode, projectIndex) {
 
     newTaskContainer.classList.add("active");
 
-    if (project.id !== 0) {
+    if (project.title !== "Home") {
       workspaceTitle.addEventListener("click", updateProjectTitle);
     }
   }
@@ -3747,7 +3730,7 @@ function updateProjectTitle() {
     currProject.title = value;
 
     input.remove();
-    updateProjectsStorage();
+    updateProjectStorage(currProject._id, value);
     workspaceTitle.classList.add("active");
   });
 
@@ -3815,141 +3798,253 @@ function detectClickOutsideForm(e) {
 
 
 
+;// ./src/api.js
+const API_URL = "https://capiche-k86q.onrender.com/api";
+
+const apiFetch = async (path, options = {}) => {
+  const token = localStorage.getItem('token');
+  return fetch(`${API_URL}${path}`, {
+    ...options,
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+      ...options.headers,
+    },
+  });
+};
 ;// ./src/modules/storage.js
 /**
  * @module src/modules/storage.js
  *
  * @description
  * Handles loading, initializing, and persisting project and task data
- * using localStorage. Ensures fallback test data when none exists.
+ * via API calls. The backend is the source of truth.
  */
+
 
 
 
 
 
 /**
- * Loads stored project/task data, or inserts test data if none exists.
- * Initializes both handlers and triggers UI rendering.
+ * Async helper that checks a fetch response and throws on non-2xx.
+ * @param {Response} res - fetch Response object.
+ * @returns {Promise<any>} Parsed JSON body.
  */
-const initStorage = () => {
-  // Attempt to read data from localStorage
-  const storedProjects = JSON.parse(localStorage.getItem("projects"));
-  const storedTasks = JSON.parse(localStorage.getItem("tasks"));
-
-  projectsHandler.items = storedProjects;
-  tasksHandler.items = storedTasks;
-
-  // If any stored data is missing, fallback to predefined test data
-  if (!storedProjects || !storedTasks) {
-    const testProjectsData = [
-      { id: 0, title: "Home" },
-      { id: 1, title: "Ideal Year (A sample Project)" },
-    ];
-
-    const testTasksData = [
-      task(
-        "Design a personal vision board",
-        "Capture the goals, values, and images that motivate your long-term direction.",
-        new Date("2025-12-28 00:00"),
-        "none",
-        0
-      ),
-      task(
-        "Map out your ideal year",
-        "Outline the experiences, milestones, and habits you want to cultivate in the coming months.",
-        new Date("2026-01-15 00:00"),
-        "high",
-        0
-      ),
-      task(
-        "Share your latest creation with the world",
-        "Upload your work and let it inspire others to start their own journey.",
-        new Date("2026-02-03 00:00"),
-        "medium",
-        0
-      ),
-      task(
-        "Move your body with intention",
-        "Choose an activity that energizes you and reconnects you with your strength.",
-        new Date("2025-12-10 00:00"),
-        "low",
-        0,
-        true
-      ),
-      task(
-        "Support your wellbeing",
-        "Take what you need today to feel balanced and grounded.",
-        new Date("2025-12-05 00:00"),
-        "none",
-        0
-      ),
-      task(
-        "Start a passion project",
-        "Open a new space dedicated to something you truly enjoy creating.",
-        new Date("2026-01-02 00:00"),
-        "low",
-        1
-      ),
-      task(
-        "Develop a creative concept",
-        "Explore ideas freely and shape them into something meaningful.",
-        new Date("2026-01-22 00:00"),
-        "none",
-        1
-      ),
-      task(
-        "Complete a 30-day creativity streak",
-        "Produce something small each day: writing, sketching, music, or ideas.",
-        new Date("2026-01-25 00:00"),
-        "high",
-        1
-      ),
-      task(
-        "Plan a future-self strategy day",
-        "Map the next 3–5 years and identify the first actionable steps.",
-        new Date("2026-02-18 00:00"),
-        "medium",
-        1
-      ),
-      task(
-        "Declutter one major zone of your life",
-        "Tackle a digital archive, workspace, or physical storage to regain focus.",
-        new Date("2025-12-30 00:00"),
-        "low",
-        1
-      ),
-    ];
-
-    // Persist test data to localStorage
-    localStorage.setItem("projects", JSON.stringify(testProjectsData));
-    localStorage.setItem("tasks", JSON.stringify(testTasksData));
-
-    // Assign defaults for runtime handlers
-    projectsHandler.items = testProjectsData;
-    tasksHandler.items = testTasksData;
+const handleResponse = async (res) => {
+  if (!res.ok) {
+    const data = await res.json().catch(() => ({}));
+    throw new Error(data.message || `Request failed with status ${res.status}`);
   }
-
-  // Initialize ID counters and rebuild any needed data state
-  projectsHandler.init();
-  tasksHandler.init();
-
-  // Re-render the project interface
-  renderProjects();
+  const text = await res.text();
+  return text ? JSON.parse(text) : null;
 };
 
 /**
- * Persists current project list to localStorage.
+ * Loads project/task data from API.
+ * Seeds sample data for a brand-new user (empty account).
  */
-const updateProjectsStorage = () => {
-  localStorage.setItem("projects", JSON.stringify(projectsHandler.items));
+const initStorage = async () => {
+  try {
+    const [projectsRes, tasksRes] = await Promise.all([
+      apiFetch("/projects"),
+      apiFetch("/tasks"),
+    ]);
+
+    let projects = await handleResponse(projectsRes);
+    let tasks = await handleResponse(tasksRes);
+
+    // Seed sample data if this is a brand-new user
+    if (!projects.length || !tasks.length) {
+      projects = [];
+      tasks = [];
+
+      try {
+        // Create two sample projects
+        const homeProject = await handleResponse(
+          await apiFetch("/projects", {
+            method: "POST",
+            body: JSON.stringify({ title: "Home" }),
+          })
+        );
+        const idealYearProject = await handleResponse(
+          await apiFetch("/projects", {
+            method: "POST",
+            body: JSON.stringify({ title: "Ideal Year (A Sample Project)" }),
+          })
+        );
+
+        projects = [homeProject, idealYearProject];
+
+        // Create sample tasks for the Home project
+        const sampleTasks = [
+          task(
+            "Design a personal vision board",
+            "Capture the goals, values, and images that motivate your long-term direction.",
+            new Date("2025-12-28 00:00"),
+            "none",
+            homeProject._id
+          ),
+          task(
+            "Map out your ideal year",
+            "Outline the experiences, milestones, and habits you want to cultivate.",
+            new Date("2026-01-15 00:00"),
+            "high",
+            homeProject._id
+          ),
+        ];
+
+        tasks = await Promise.all(
+          sampleTasks.map((t) =>
+            handleResponse(
+              apiFetch("/tasks", {
+                method: "POST",
+                body: JSON.stringify(t),
+              })
+            )
+          )
+        );
+      } catch (seedError) {
+        console.error("Failed to seed sample data:", seedError);
+      }
+    }
+
+    projectsHandler.items = projects;
+    tasksHandler.items = tasks;
+
+    tasksHandler.init();
+    renderProjects();
+  } catch (error) {
+    console.error("Failed to initialize storage:", error);
+  }
 };
 
 /**
- * Persists current task list to localStorage.
+ * Create a new project on the backend, then add to local state.
+ * @param {string} title - Project title.
+ * @returns {Promise<object|null>} The saved project, or null on failure.
  */
-const updateTasksStorage = () => {
-  localStorage.setItem("tasks", JSON.stringify(tasksHandler.items));
+const createProjectStorage = async (title) => {
+  try {
+    const project = await handleResponse(
+      await apiFetch("/projects", {
+        method: "POST",
+        body: JSON.stringify({ title }),
+      })
+    );
+    projectsHandler.addProject(project);
+    return project;
+  } catch (error) {
+    console.error("Failed to create project:", error);
+    return null;
+  }
+};
+
+/**
+ * Update a project title on the backend.
+ * @param {string} id - MongoDB _id.
+ * @param {string} title - New title.
+ * @returns {Promise<boolean>} True on success.
+ */
+const updateProjectStorage = async (id, title) => {
+  try {
+    await handleResponse(
+      await apiFetch(`/projects/${id}`, {
+        method: "PUT",
+        body: JSON.stringify({ title }),
+      })
+    );
+    return true;
+  } catch (error) {
+    console.error("Failed to update project:", error);
+    return false;
+  }
+};
+
+/**
+ * Delete a project and its tasks on the backend, then update local state.
+ * @param {string} id - MongoDB _id.
+ * @returns {Promise<boolean>} True on success.
+ */
+const deleteProjectStorage = async (id) => {
+  try {
+    await handleResponse(
+      await apiFetch(`/projects/${id}`, { method: "DELETE" })
+    );
+
+    const index = projectsHandler.items.findIndex((p) => p._id === id);
+    if (index !== -1) projectsHandler.removeProject(index);
+
+    tasksHandler.removeProjectTasks(id);
+    return true;
+  } catch (error) {
+    console.error("Failed to delete project:", error);
+    return false;
+  }
+};
+
+/**
+ * Create a new task on the backend, then add to local state.
+ * @param {object} taskData - Task data matching backend shape.
+ * @returns {Promise<object|null>} The saved task, or null on failure.
+ */
+const createTaskStorage = async (taskData) => {
+  try {
+    const savedTask = await handleResponse(
+      await apiFetch("/tasks", {
+        method: "POST",
+        body: JSON.stringify(taskData),
+      })
+    );
+    return tasksHandler.addTask(savedTask);
+  } catch (error) {
+    console.error("Failed to create task:", error);
+    return null;
+  }
+};
+
+/**
+ * Update a task on the backend, then update local state.
+ * @param {string} id - MongoDB _id.
+ * @param {object} updates - Fields to update.
+ * @returns {Promise<boolean>} True on success.
+ */
+const updateTaskStorage = async (id, updates) => {
+  try {
+    const savedTask = await handleResponse(
+      await apiFetch(`/tasks/${id}`, {
+        method: "PUT",
+        body: JSON.stringify(updates),
+      })
+    );
+
+    const index = tasksHandler.items.findIndex((t) => t._id === id);
+    if (index !== -1) tasksHandler.items[index] = savedTask;
+    return true;
+  } catch (error) {
+    console.error("Failed to update task:", error);
+    return false;
+  }
+};
+
+/**
+ * Delete a task on the backend, then remove from local state.
+ * @param {string} id - MongoDB _id.
+ * @returns {Promise<boolean>} True on success.
+ */
+const deleteTaskStorage = async (id) => {
+  try {
+    await handleResponse(
+      await apiFetch(`/tasks/${id}`, { method: "DELETE" })
+    );
+
+    const index = tasksHandler.items.findIndex((t) => t._id === id);
+    if (index !== -1) tasksHandler.removeTask(index);
+    return true;
+  } catch (error) {
+    console.error("Failed to delete task:", error);
+    return false;
+  }
 };
 
 ;// ./src/app.js
@@ -3960,13 +4055,21 @@ const updateTasksStorage = () => {
  */
 
 /* ==========================================================================
+   AUTH GUARD
+   ========================================================================== */
+
+// Check if user is authenticated BEFORE loading anything
+const token = localStorage.getItem("token");
+
+if (!token) {
+    window.location.href = "./login.html";
+}
+
+/* ==========================================================================
    ASSETS & STYLES
    ========================================================================== */
 
-// Global application styles
 
-
-// Static assets (required for bundlers like Webpack to process them)
 
 
 /* ==========================================================================
@@ -3979,10 +4082,6 @@ const updateTasksStorage = () => {
    INITIALIZATION
    ========================================================================== */
 
-/**
- * Bootstraps the application.
- * Initializes the storage engine to load saved data.
- */
 const initApp = () => {
     initStorage();
 };
