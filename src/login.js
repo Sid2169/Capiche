@@ -113,7 +113,7 @@ loginForm.addEventListener("submit", async (e) => {
     } else {
       localStorage.setItem("token", data.token);
       localStorage.setItem("userId", data.userId);
-      window.location.href = "/index.html";
+      window.location.href = "./index.html";
     }
   } catch {
     showError("Could not reach the server. Is it running?");
@@ -176,7 +176,7 @@ regForm.addEventListener("submit", async (e) => {
         localStorage.setItem("token", loginData.token);
         localStorage.setItem("userId", loginData.userId);
         setTimeout(() => {
-          window.location.href = "/index.html";
+          window.location.href = "./index.html";
         }, 800);
       }
     }
@@ -190,5 +190,5 @@ regForm.addEventListener("submit", async (e) => {
 
 // ─── REDIRECT IF ALREADY LOGGED IN ───────────────────────
 if (localStorage.getItem("token")) {
-  window.location.href = "/index.html";
+  window.location.href = "./index.html";
 }
