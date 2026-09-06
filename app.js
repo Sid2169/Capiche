@@ -3691,8 +3691,14 @@ function changeProject(projectNode, projectIndex) {
     const project = projectsHandler.items[projectIndex];
 
     // Data may not be loaded yet (e.g. API unreachable); never crash.
+    // Data may not be loaded yet (e.g. API unreachable); never crash.
+    // Home (index 0) always shows the Add Task button; other projects
+    // need a loaded project to add tasks to.
     workspaceTitle.textContent = project ? project.title : "Home";
-    newTaskContainer.classList.toggle("active", Boolean(project));
+    newTaskContainer.classList.toggle(
+      "active",
+      projectIndex === 0 || Boolean(project)
+    );
 
     if (project && project.title !== "Home") {
       workspaceTitle.addEventListener("click", updateProjectTitle);
@@ -3803,7 +3809,7 @@ function detectClickOutsideForm(e) {
 
 
 ;// ./src/api.js
-const API_URL = "https://capiche-k86q.onrender.com/api";
+const API_URL = "http://localhost:5000/api";
 
 const apiFetch = async (path, options = {}) => {
   const token = localStorage.getItem('token');
