@@ -182,8 +182,14 @@ function changeProject(projectNode, projectIndex) {
     const project = projectsHandler.items[projectIndex];
 
     // Data may not be loaded yet (e.g. API unreachable); never crash.
+    // Data may not be loaded yet (e.g. API unreachable); never crash.
+    // Home (index 0) always shows the Add Task button; other projects
+    // need a loaded project to add tasks to.
     workspaceTitle.textContent = project ? project.title : "Home";
-    newTaskContainer.classList.toggle("active", Boolean(project));
+    newTaskContainer.classList.toggle(
+      "active",
+      projectIndex === 0 || Boolean(project)
+    );
 
     if (project && project.title !== "Home") {
       workspaceTitle.addEventListener("click", updateProjectTitle);
