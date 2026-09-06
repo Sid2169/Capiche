@@ -3025,7 +3025,10 @@ function getNewTaskData(e) {
  * @param {string} priority 
  */
 function composeNewTask(title, details, date, priority) {
-    const projectId = projectsHandler.items[activeTab]._id;
+    const project = projectsHandler.items[activeTab];
+    if (!project) return;
+
+    const projectId = project._id;
     const newTask = task(title, details, date, priority, projectId);
 
     createTaskStorage(newTask).then((newTaskIndex) => {
@@ -3354,6 +3357,8 @@ function filterTasks() {
                 return isThisWeek(task.date);
             });
         default:
+            if (!projectsHandler.items[activeTab]) return [];
+
             const projectId = projectsHandler.items[activeTab]._id;
             return tasksHandler.items.filter((task, index) => {
                 task.arrIndex = index;
@@ -3684,11 +3689,12 @@ function changeProject(projectNode, projectIndex) {
     newTaskContainer.classList.remove("active");
   } else {
     const project = projectsHandler.items[projectIndex];
-    workspaceTitle.textContent = project.title;
 
-    newTaskContainer.classList.add("active");
+    // Data may not be loaded yet (e.g. API unreachable); never crash.
+    workspaceTitle.textContent = project ? project.title : "Home";
+    newTaskContainer.classList.toggle("active", Boolean(project));
 
-    if (project.title !== "Home") {
+    if (project && project.title !== "Home") {
       workspaceTitle.addEventListener("click", updateProjectTitle);
     }
   }
