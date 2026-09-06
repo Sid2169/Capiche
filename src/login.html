@@ -8,13 +8,52 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
 
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 
     <style>
+      /* -----------------------------------------------
+         DESIGN TOKENS — mirrors src/style.css
+      ----------------------------------------------- */
+      :root {
+        --bg-canvas: #0c0f16;
+        --bg-surface: #141926;
+        --bg-elevated: #1b2234;
+        --bg-inset: #101522;
+        --bg-hover: #1a2130;
+
+        --border-subtle: rgba(150, 170, 200, 0.14);
+        --border-strong: rgba(150, 170, 200, 0.28);
+
+        --text-primary: #e7ecf5;
+        --text-secondary: #9aa7bd;
+        --text-muted: #626f84;
+
+        --brand: #22d3c4;
+        --brand-strong: #14b8a6;
+        --brand-on: #062221;
+        --brand-soft: rgba(34, 211, 196, 0.12);
+        --brand-ring: rgba(34, 211, 196, 0.35);
+
+        --danger-text: hsl(0, 84%, 72%);
+
+        --font-primary: "Inter", system-ui, -apple-system, sans-serif;
+        --font-display: "berkshire", serif;
+
+        --radius-sm: 8px;
+        --radius-md: 12px;
+        --radius-lg: 16px;
+        --radius-pill: 999px;
+
+        --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.3);
+
+        --ease: cubic-bezier(0.4, 0, 0.2, 1);
+        --duration: 160ms;
+      }
+
       /* -----------------------------------------------
          FONTS
       ----------------------------------------------- */
@@ -28,7 +67,7 @@
       }
 
       /* -----------------------------------------------
-         RESET
+         RESET & BASE
       ----------------------------------------------- */
       *, *::before, *::after {
         box-sizing: border-box;
@@ -36,38 +75,29 @@
         padding: 0;
       }
 
-      /* -----------------------------------------------
-         VARIABLES — mirrors style.css exactly
-      ----------------------------------------------- */
-      :root {
-        --color-bg-primary:    #101010;
-        --secondary-color:     #1c1c1c;
-        --text-color:          #008b8b;
-        --accent-color:        #e6f7ff;
-        --color-text-accent:   #00bfff;
-        --blue:                hsl(212, 100%, 48%);
-        --yellow:              hsl(41,  100%, 50%);
-        --red:                 hsl(0,   100%, 57%);
-        --red-text:            hsl(0,   90%,  44%);
-
-        --font-primary:  "Inter", sans-serif;
-        --font-display:  "berkshire", serif;
-
-        --radius-sm: 6px;
-        --radius-md: 8px;
-      }
-
-      /* -----------------------------------------------
-         BASE
-      ----------------------------------------------- */
       html, body {
         height: 100%;
         font-family: var(--font-primary);
         font-size: 10px;
-        background-color: var(--color-bg-primary);
-        color: var(--text-color);
-        line-height: 1.2;
+        background-color: var(--bg-canvas);
+        color: var(--text-primary);
+        line-height: 1.45;
         text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      button {
+        font-family: inherit;
+      }
+
+      ::selection {
+        background-color: var(--brand-ring);
+        color: var(--text-primary);
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--brand);
+        outline-offset: 2px;
       }
 
       /* -----------------------------------------------
@@ -78,64 +108,59 @@
         min-height: 100%;
       }
 
-      /* Left panel — decorative brand strip */
+      /* Left panel — brand surface */
       .panel-brand {
         display: none;
         position: relative;
-        width: 380px;
+        width: 400px;
         flex-shrink: 0;
-        background-color: var(--secondary-color);
-        border-right: 1px solid rgba(0, 139, 139, 0.12);
+        background-color: var(--bg-surface);
+        border-right: 1px solid var(--border-subtle);
         overflow: hidden;
       }
 
       @media (min-width: 900px) {
-        .panel-brand { display: flex; flex-direction: column; justify-content: space-between; padding: 50px 40px; }
+        .panel-brand { display: flex; flex-direction: column; justify-content: space-between; padding: 56px 44px; }
       }
 
       .brand-logo {
         font-family: var(--font-display);
         font-size: 5rem;
-        color: var(--color-text-accent);
+        color: var(--brand);
         line-height: 1;
-        letter-spacing: -0.5px;
+        letter-spacing: 0.5px;
       }
 
       .brand-tagline {
         font-size: 1.4rem;
-        font-weight: 400;
-        color: var(--text-color);
-        opacity: 0.7;
-        margin-top: 12px;
+        color: var(--text-secondary);
+        margin-top: 14px;
         line-height: 1.6;
       }
 
-      /* Decorative grid dots */
       .brand-dots {
         position: absolute;
         inset: 0;
         background-image:
-          radial-gradient(circle, rgba(0, 139, 139, 0.15) 1px, transparent 1px);
-        background-size: 28px 28px;
+          radial-gradient(circle, rgba(34, 211, 196, 0.12) 1px, transparent 1px);
+        background-size: 30px 30px;
         pointer-events: none;
       }
 
-      /* Decorative teal glow blob */
       .brand-glow {
         position: absolute;
-        bottom: -80px;
-        left: -80px;
-        width: 360px;
-        height: 360px;
+        bottom: -90px;
+        left: -90px;
+        width: 380px;
+        height: 380px;
         border-radius: 50%;
-        background: radial-gradient(circle, rgba(0, 191, 255, 0.08) 0%, transparent 70%);
+        background: radial-gradient(circle, rgba(34, 211, 196, 0.07) 0%, transparent 70%);
         pointer-events: none;
       }
 
       .brand-footer {
         font-size: 1.2rem;
-        color: var(--text-color);
-        opacity: 0.4;
+        color: var(--text-muted);
       }
 
       /* -----------------------------------------------
@@ -146,13 +171,18 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 40px 24px;
+        padding: 32px 20px;
       }
 
       .auth-box {
         width: 100%;
-        max-width: 400px;
-        animation: fadeUp 0.35s ease both;
+        max-width: 420px;
+        background-color: var(--bg-surface);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-lg);
+        padding: 40px 36px;
+        box-shadow: var(--shadow-md);
+        animation: fadeUp 0.35s var(--ease) both;
       }
 
       @keyframes fadeUp {
@@ -160,13 +190,13 @@
         to   { opacity: 1; transform: translateY(0); }
       }
 
-      /* Mobile logo (shown only when left panel is hidden) */
       .mobile-logo {
         font-family: var(--font-display);
         font-size: 4rem;
-        color: var(--color-text-accent);
+        color: var(--brand);
         margin-bottom: 32px;
         display: block;
+        text-align: center;
       }
 
       @media (min-width: 900px) {
@@ -177,32 +207,95 @@
       .auth-tabs {
         display: flex;
         gap: 4px;
-        background-color: var(--secondary-color);
-        border-radius: var(--radius-md);
-        padding: 4px;
+        background-color: var(--bg-inset);
+        border-radius: var(--radius-pill);
+        padding: 5px;
         margin-bottom: 28px;
       }
 
       .auth-tab {
         flex: 1;
-        padding: 9px;
+        padding: 10px;
         font-size: 1.4rem;
         font-weight: 600;
         border: none;
-        border-radius: 5px;
+        border-radius: var(--radius-pill);
         cursor: pointer;
         background: none;
-        color: var(--text-color);
-        transition: background-color 0.18s ease, color 0.18s ease;
+        color: var(--text-secondary);
+        transition: background-color var(--duration) var(--ease),
+          color var(--duration) var(--ease);
         font-family: var(--font-primary);
       }
 
       .auth-tab.active {
-        background-color: var(--accent-color);
-        color: var(--color-text-accent);
+        background-color: var(--bg-elevated);
+        color: var(--text-primary);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
       }
 
-      /* Form */
+      /* Google sign-in */
+      .google-section {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-bottom: 6px;
+      }
+
+      .google-section #googleSignIn {
+        display: flex;
+        justify-content: center;
+      }
+
+      .auth-divider {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .auth-divider span {
+        font-size: 1.25rem;
+        color: var(--text-muted);
+        white-space: nowrap;
+      }
+
+      .auth-divider::before,
+      .auth-divider::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background-color: var(--border-subtle);
+      }
+
+      /* Banners */
+      .auth-error,
+      .auth-success {
+        font-size: 1.3rem;
+        border-radius: var(--radius-sm);
+        margin-bottom: 20px;
+        padding: 10px 14px;
+        display: none;
+      }
+
+      .auth-error.active,
+      .auth-success.active {
+        display: block;
+        animation: fadeUp 0.2s var(--ease) both;
+      }
+
+      .auth-error {
+        color: var(--danger-text);
+        background-color: rgba(248, 113, 113, 0.08);
+        border: 1px solid rgba(248, 113, 113, 0.2);
+      }
+
+      .auth-success {
+        color: var(--brand);
+        background-color: var(--brand-soft);
+        border: 1px solid var(--brand-ring);
+      }
+
+      /* Forms */
       .auth-form {
         display: none;
         flex-direction: column;
@@ -221,36 +314,36 @@
 
       .field label {
         font-size: 1.3rem;
-        font-weight: 600;
-        color: var(--text-color);
+        font-weight: 500;
+        color: var(--text-secondary);
       }
 
       .field input {
         font-family: var(--font-primary);
         font-size: 1.5rem;
-        background-color: var(--secondary-color);
-        color: var(--accent-color);
-        border: 1px solid rgba(0, 139, 139, 0.25);
+        background-color: var(--bg-inset);
+        color: var(--text-primary);
+        border: 1px solid var(--border-subtle);
         border-radius: var(--radius-sm);
-        padding: 11px 14px;
+        padding: 12px 14px;
         outline: none;
-        transition: border-color 0.18s ease, box-shadow 0.18s ease;
+        transition: border-color var(--duration) var(--ease),
+          box-shadow var(--duration) var(--ease);
         width: 100%;
       }
 
       .field input::placeholder {
-        color: rgba(0, 139, 139, 0.35);
+        color: var(--text-muted);
       }
 
       .field input:focus {
-        border-color: var(--text-color);
-        box-shadow: 0 0 0 3px rgba(0, 139, 139, 0.12);
+        border-color: var(--brand);
+        box-shadow: 0 0 0 3px var(--brand-ring);
       }
 
-      /* Error message */
       .field-error {
         font-size: 1.2rem;
-        color: var(--red-text);
+        color: var(--danger-text);
         display: none;
       }
 
@@ -267,15 +360,15 @@
         border: none;
         border-radius: var(--radius-sm);
         cursor: pointer;
-        background-color: var(--accent-color);
-        color: var(--text-color);
-        transition: background-color 0.18s ease, color 0.18s ease, transform 0.1s ease;
+        background-color: var(--brand);
+        color: var(--brand-on);
+        transition: background-color var(--duration) var(--ease),
+          transform 0.1s var(--ease);
         margin-top: 4px;
       }
 
       .btn-submit:hover {
-        background-color: #fff;
-        color: var(--color-text-accent);
+        background-color: var(--brand-strong);
       }
 
       .btn-submit:active {
@@ -288,79 +381,13 @@
         transform: none;
       }
 
-      /* Global error banner */
-      .auth-error {
-        font-size: 1.3rem;
-        color: var(--red-text);
-        background-color: rgba(255, 50, 50, 0.07);
-        border: 1px solid rgba(255, 50, 50, 0.18);
-        border-radius: var(--radius-sm);
-        padding: 10px 14px;
-        display: none;
-      }
-
-      .auth-error.active {
-        display: block;
-        animation: fadeUp 0.2s ease both;
-      }
-
-      /* Success banner */
-      .auth-success {
-        font-size: 1.3rem;
-        color: #00bfff;
-        background-color: rgba(0, 191, 255, 0.06);
-        border: 1px solid rgba(0, 191, 255, 0.18);
-        border-radius: var(--radius-sm);
-        padding: 10px 14px;
-        display: none;
-      }
-
-      .auth-success.active {
-        display: block;
-        animation: fadeUp 0.2s ease both;
-      }
-
-      /* Divider */
-      .auth-divider {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin: 4px 0;
-      }
-
-      .auth-divider span {
-        font-size: 1.2rem;
-        color: rgba(0, 139, 139, 0.4);
-        white-space: nowrap;
-      }
-
-      .auth-divider::before,
-      .auth-divider::after {
-        content: "";
-        flex: 1;
-        height: 1px;
-        background-color: rgba(0, 139, 139, 0.15);
-      }
-
-      /* Google sign-in */
-      .google-section {
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-      }
-
-      .google-section #googleSignIn {
-        display: flex;
-        justify-content: center;
-      }
-
       /* Spinner */
       .spinner {
         display: inline-block;
         width: 14px;
         height: 14px;
-        border: 2px solid rgba(0, 139, 139, 0.3);
-        border-top-color: var(--text-color);
+        border: 2px solid rgba(34, 211, 196, 0.3);
+        border-top-color: var(--brand);
         border-radius: 50%;
         animation: spin 0.7s linear infinite;
         vertical-align: middle;

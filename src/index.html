@@ -15,23 +15,24 @@
              SIDEBAR
         ============================ -->
       <section class="sidebar">
-        <!-- Sidebar title + GitHub link -->
+        <!-- Sidebar title + account button -->
         <div class="sidebar_title">
           <h1>Capiche</h1>
 
-          <!-- External link to GitHub profile -->
-          <a
-            class="grow-effect"
-            href="https://github.com/Sid2169"
-            target="_blank"
+          <!-- Account management -->
+          <button
+            type="button"
+            id="accountBtn"
+            class="account-btn icon-container"
+            aria-label="Account settings"
+            title="Account"
           >
-            <img
-              src="./images/GitHub-Mark.png"
-              width="32"
-              height="32"
-              alt="GitHub Logo"
-            />
-          </a>
+            <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 4a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm-.02 12.25a7.49 7.49 0 0 1-5.35-2.29 4.9 4.9 0 0 1 10.7 0 7.49 7.49 0 0 1-5.35 2.29z"
+              />
+            </svg>
+          </button>
         </div>
 
         <!-- Main sidebar navigation -->
@@ -392,6 +393,89 @@
 
       <!-- Dark overlay for modal -->
       <div class="dark-overlay"></div>
+
+      <!-- ===========================
+             ACCOUNT MODAL
+        ============================ -->
+      <div class="task-modal account-modal">
+        <!-- Modal Header -->
+        <div class="task-modal_header">
+          <span class="task-modal_title">Account</span>
+
+          <button
+            type="button"
+            class="close-modal-btn icon-container"
+            id="accountCloseBtn"
+            aria-label="Close modal"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,
+                            2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,
+                            12L17,8.41L15.59,7Z" />
+                    </svg>
+          </button>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="task-modal_body">
+          <div class="account-profile">
+            <div class="account-avatar" id="accountAvatar" aria-hidden="true">
+              ?
+            </div>
+
+            <div class="account-meta">
+              <span class="account-email" id="accountEmail">Loading…</span>
+              <span class="account-sub" id="accountSub"></span>
+            </div>
+          </div>
+
+          <div class="account-pw" id="accountPasswordSection">
+            <h4>Change password</h4>
+            <p class="account-hint">
+              Used only for accounts created with an email and password.
+            </p>
+
+            <form id="changePasswordForm" novalidate>
+              <div class="account-field">
+                <label for="cpCurrent">Current password</label>
+                <input
+                  type="password"
+                  id="cpCurrent"
+                  name="currentPassword"
+                  autocomplete="current-password"
+                />
+              </div>
+
+              <div class="account-field">
+                <label for="cpNew">New password</label>
+                <input
+                  type="password"
+                  id="cpNew"
+                  name="newPassword"
+                  autocomplete="new-password"
+                  minlength="8"
+                />
+              </div>
+
+              <div class="account-field">
+                <label for="cpConfirm">Confirm new password</label>
+                <input
+                  type="password"
+                  id="cpConfirm"
+                  name="confirmPassword"
+                  autocomplete="new-password"
+                />
+              </div>
+
+              <span class="account-msg" id="accountMsg" role="status"></span>
+
+              <button type="submit" class="modal_submit" id="changePasswordBtn">
+                Update password
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
