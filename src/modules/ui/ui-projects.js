@@ -180,11 +180,12 @@ function changeProject(projectNode, projectIndex) {
     newTaskContainer.classList.remove("active");
   } else {
     const project = projectsHandler.items[projectIndex];
-    workspaceTitle.textContent = project.title;
 
-    newTaskContainer.classList.add("active");
+    // Data may not be loaded yet (e.g. API unreachable); never crash.
+    workspaceTitle.textContent = project ? project.title : "Home";
+    newTaskContainer.classList.toggle("active", Boolean(project));
 
-    if (project.title !== "Home") {
+    if (project && project.title !== "Home") {
       workspaceTitle.addEventListener("click", updateProjectTitle);
     }
   }

@@ -165,7 +165,10 @@ function getNewTaskData(e) {
  * @param {string} priority 
  */
 function composeNewTask(title, details, date, priority) {
-    const projectId = projectsHandler.items[activeTab]._id;
+    const project = projectsHandler.items[activeTab];
+    if (!project) return;
+
+    const projectId = project._id;
     const newTask = task(title, details, date, priority, projectId);
 
     createTaskStorage(newTask).then((newTaskIndex) => {
@@ -494,6 +497,8 @@ function filterTasks() {
                 return isThisWeek(task.date);
             });
         default:
+            if (!projectsHandler.items[activeTab]) return [];
+
             const projectId = projectsHandler.items[activeTab]._id;
             return tasksHandler.items.filter((task, index) => {
                 task.arrIndex = index;
