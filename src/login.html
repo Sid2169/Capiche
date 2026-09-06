@@ -12,6 +12,8 @@
       rel="stylesheet"
     />
 
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
     <style>
       /* -----------------------------------------------
          FONTS
@@ -340,6 +342,18 @@
         background-color: rgba(0, 139, 139, 0.15);
       }
 
+      /* Google sign-in */
+      .google-section {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .google-section #googleSignIn {
+        display: flex;
+        justify-content: center;
+      }
+
       /* Spinner */
       .spinner {
         display: inline-block;
@@ -405,6 +419,12 @@
           <!-- Banners -->
           <div class="auth-error" id="authError" role="alert"></div>
           <div class="auth-success" id="authSuccess" role="status"></div>
+
+          <!-- Google sign-in -->
+          <div class="google-section" id="googleSection" hidden>
+            <div id="googleSignIn"></div>
+            <div class="auth-divider"><span>or continue with email</span></div>
+          </div>
 
           <!-- LOGIN FORM -->
           <form
