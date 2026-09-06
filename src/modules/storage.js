@@ -181,6 +181,7 @@ export const createTaskStorage = async (taskData) => {
         body: JSON.stringify(taskData),
       })
     );
+    if (savedTask.date !== null) savedTask.date = new Date(savedTask.date);
     return tasksHandler.addTask(savedTask);
   } catch (error) {
     console.error("Failed to create task:", error);
@@ -204,7 +205,10 @@ export const updateTaskStorage = async (id, updates) => {
     );
 
     const index = tasksHandler.items.findIndex((t) => t._id === id);
-    if (index !== -1) tasksHandler.items[index] = savedTask;
+    if (index !== -1) {
+      if (savedTask.date !== null) savedTask.date = new Date(savedTask.date);
+      tasksHandler.items[index] = savedTask;
+    }
     return true;
   } catch (error) {
     console.error("Failed to update task:", error);
