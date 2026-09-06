@@ -347,7 +347,8 @@ ul, li {
 }
 
 .account-btn,
-.theme-btn {
+.theme-btn,
+#logoutBtn {
   width: 40px;
   height: 40px;
   display: flex;
@@ -358,6 +359,10 @@ ul, li {
   fill: var(--text-secondary);
   transition: background-color var(--duration) var(--ease),
     color var(--duration) var(--ease);
+}
+
+#logoutBtn {
+  margin-top: var(--sp-3);
 }
 
 .theme-btn svg {
@@ -1124,7 +1129,8 @@ input[type="submit"] {
 
 @media (hover: hover) {
   .account-btn:hover,
-  .theme-btn:hover {
+  .theme-btn:hover,
+  #logoutBtn:hover {
     background-color: var(--bg-hover);
     color: var(--text-primary);
     fill: var(--text-primary);
