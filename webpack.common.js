@@ -5,8 +5,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 // Backend base URL (the part before "/api").
 // Set the API_URL env var when building for production, e.g.:
 //   API_URL=https://capiche.onrender.com npm run build
-// Defaults to the local dev server so development keeps working out of the box.
-const apiBaseUrl = process.env.API_URL || 'http://localhost:5000';
+// Defaults to the production backend so the local dev server (`npm start`)
+// works without a local API; the server reflects whatever Origin you use.
+const apiBaseUrl = process.env.API_URL || 'https://capiche-k86q.onrender.com';
 
 // Google OAuth client ID for the "Sign in with Google" button. Public by
 // design, so it is safe to embed in the bundle. Leave unset (empty) to
