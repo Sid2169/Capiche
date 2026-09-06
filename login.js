@@ -8,6 +8,7 @@
  */
 
 const API_URL = "https://capiche-k86q.onrender.com/api";
+const GOOGLE_CLIENT_ID = "28454348736-qq956bsg77oitamu8b8nvgsnk0v6icet.apps.googleusercontent.com";
 
 // ─── DOM refs ─────────────────────────────────────────────
 const tabs = document.querySelectorAll(".auth-tab");
@@ -15,6 +16,8 @@ const loginForm = document.getElementById("loginForm");
 const regForm = document.getElementById("registerForm");
 const errorBanner = document.getElementById("authError");
 const successBanner = document.getElementById("authSuccess");
+const googleSection = document.getElementById("googleSection");
+const googleSignIn = document.getElementById("googleSignIn");
 
 // ─── TAB SWITCHING ────────────────────────────────────────
 tabs.forEach((tab) => {
@@ -188,6 +191,66 @@ regForm.addEventListener("submit", async (e) => {
     btn.disabled = false;
   }
 });
+
+// ─── GOOGLE SIGN-IN ───────────────────────────────────────
+async function handleGoogleCredential(response) {
+  const credential = response.credential;
+  if (!credential) {
+    showError("Google sign-in failed. Please try again.");
+    return;
+  }
+
+  try {
+    const res = await fetch(`${API_URL}/auth/google`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ credential }),
+    });
+    const data = await res.json();
+
+    if (!res.ok) {
+      showError(data.message || "Google sign-in failed. Please try again.");
+    } else {
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("userId", data.userId);
+      window.location.href = "./index.html";
+    }
+  } catch {
+    showError("Could not reach the server. Is it running?");
+  }
+}
+
+let googleReady = false;
+function initGoogleSignIn() {
+  if (googleReady) return true;
+  if (!window.google || !window.google.accounts || !window.google.accounts.id) return false;
+
+  googleReady = true;
+  googleSection.hidden = false;
+
+  const width = googleSignIn.clientWidth || undefined;
+  window.google.accounts.id.initialize({
+    client_id: GOOGLE_CLIENT_ID,
+    callback: handleGoogleCredential,
+  });
+  window.google.accounts.id.renderButton(googleSignIn, {
+    theme: "outline",
+    size: "large",
+    shape: "rectangular",
+    text: "continue_with",
+    logo_alignment: "center",
+    ...(width !== undefined ? { width } : {}),
+  });
+  return true;
+}
+
+if (GOOGLE_CLIENT_ID) {
+  let ticks = 0;
+  const poll = setInterval(() => {
+    if (initGoogleSignIn() || ++ticks > 50) clearInterval(poll);
+  }, 200);
+  window.addEventListener("load", () => initGoogleSignIn());
+}
 
 // ─── REDIRECT IF ALREADY LOGGED IN ───────────────────────
 if (localStorage.getItem("token")) {
