@@ -6,8 +6,12 @@
  * this page doesn't trigger the app bootstrap/auth guard.
  */
 
+import { initTheme } from "./modules/ui/ui-theme.js";
+
 const API_URL = process.env.API_URL;
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+
+initTheme();
 
 // ─── DOM refs ─────────────────────────────────────────────
 const tabs = document.querySelectorAll(".auth-tab");

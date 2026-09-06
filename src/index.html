@@ -7,6 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Capiche - Task Management</title>
+
+    <!-- Restore theme before first paint to avoid a flash -->
+    <script>
+      (function () {
+        try {
+          if (localStorage.getItem("capiche-theme") === "light") {
+            document.documentElement.setAttribute("data-theme", "light");
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
 
   <body>
@@ -15,24 +26,67 @@
              SIDEBAR
         ============================ -->
       <section class="sidebar">
-        <!-- Sidebar title + account button -->
+        <!-- Sidebar title + actions -->
         <div class="sidebar_title">
           <h1>Capiche</h1>
 
-          <!-- Account management -->
-          <button
-            type="button"
-            id="accountBtn"
-            class="account-btn icon-container"
-            aria-label="Account settings"
-            title="Account"
-          >
-            <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 4a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm-.02 12.25a7.49 7.49 0 0 1-5.35-2.29 4.9 4.9 0 0 1 10.7 0 7.49 7.49 0 0 1-5.35 2.29z"
-              />
-            </svg>
-          </button>
+          <div class="title-actions">
+            <!-- Theme toggle -->
+            <button
+              type="button"
+              id="themeToggle"
+              class="theme-btn icon-container"
+              aria-label="Switch to light theme"
+              title="Toggle theme"
+            >
+              <!-- Sun (click to switch to light) -->
+              <svg
+                class="icon-sun"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="4.5" />
+                <path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.2 5.2l1.8 1.8M17 17l1.8 1.8M5.2 18.8L7 17M17 7l1.8-1.8" />
+              </svg>
+              <!-- Moon (click to switch to dark) -->
+              <svg
+                class="icon-moon"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M20.5 13.2A8.5 8.5 0 1 1 10.8 3.5a6.8 6.8 0 0 0 9.7 9.7z" />
+              </svg>
+            </button>
+
+            <!-- Account management -->
+            <button
+              type="button"
+              id="accountBtn"
+              class="account-btn icon-container"
+              aria-label="Account settings"
+              title="Account"
+            >
+              <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 4a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm-.02 12.25a7.49 7.49 0 0 1-5.35-2.29 4.9 4.9 0 0 1 10.7 0 7.49 7.49 0 0 1-5.35 2.29z"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
 
         <!-- Main sidebar navigation -->

@@ -24,6 +24,8 @@
    -------------------------------------------------------------------------- */
 
 :root {
+  color-scheme: dark;
+
   /* Surfaces */
   --bg-canvas: #0c0f16;
   --bg-surface: #141926;
@@ -95,6 +97,45 @@
   --duration: 160ms;
 }
 
+/* Light theme — overrides tokens only; every component reads through them */
+html[data-theme="light"] {
+  color-scheme: light;
+
+  /* Surfaces */
+  --bg-canvas: #f4f6fb;
+  --bg-surface: #ffffff;
+  --bg-elevated: #edf1f8;
+  --bg-inset: #e9eef7;
+  --bg-hover: #edf1f8;
+
+  /* Borders */
+  --border-subtle: rgba(15, 23, 42, 0.1);
+  --border-strong: rgba(15, 23, 42, 0.22);
+
+  /* Text */
+  --text-primary: #101828;
+  --text-secondary: #475467;
+  --text-muted: #7d8aa0;
+
+  /* Brand */
+  --brand: #0d9488;
+  --brand-strong: #0f766e;
+  --brand-on: #ffffff;
+  --brand-soft: rgba(13, 148, 136, 0.1);
+  --brand-ring: rgba(13, 148, 136, 0.3);
+
+  /* Semantic */
+  --blue: hsl(212, 92%, 46%);
+  --yellow: hsl(38, 94%, 48%);
+  --red: hsl(2, 78%, 48%);
+  --danger-text: hsl(0, 74%, 44%);
+
+  /* Elevation */
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.1);
+  --shadow-lg: 0 24px 60px rgba(15, 23, 42, 0.14);
+}
+
 /* --------------------------------------------------------------------------
    RESET & BASE
    -------------------------------------------------------------------------- */
@@ -112,6 +153,8 @@ html {
 body {
   height: 100%;
   line-height: 1.45;
+  transition: background-color var(--duration) var(--ease),
+    color var(--duration) var(--ease);
 }
 
 body,
@@ -297,7 +340,14 @@ ul, li {
   letter-spacing: 0.5px;
 }
 
-.account-btn {
+.title-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+}
+
+.account-btn,
+.theme-btn {
   width: 40px;
   height: 40px;
   display: flex;
@@ -308,6 +358,27 @@ ul, li {
   fill: var(--text-secondary);
   transition: background-color var(--duration) var(--ease),
     color var(--duration) var(--ease);
+}
+
+.theme-btn svg {
+  fill: none;
+  transition: transform 300ms var(--ease);
+}
+
+.theme-btn:hover svg {
+  transform: rotate(20deg);
+}
+
+.theme-btn .icon-moon {
+  display: none;
+}
+
+html[data-theme="light"] .theme-btn .icon-sun {
+  display: none;
+}
+
+html[data-theme="light"] .theme-btn .icon-moon {
+  display: block;
 }
 
 .sidebar_top {
@@ -1052,7 +1123,8 @@ input[type="submit"] {
    -------------------------------------------------------------------------- */
 
 @media (hover: hover) {
-  .account-btn:hover {
+  .account-btn:hover,
+  .theme-btn:hover {
     background-color: var(--bg-hover);
     color: var(--text-primary);
     fill: var(--text-primary);

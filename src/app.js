@@ -27,12 +27,14 @@ import "./style.css";
 
 import * as storage from "./modules/storage.js";
 import "./modules/ui/ui-account.js";
+import { initTheme } from "./modules/ui/ui-theme.js";
 
 /* ==========================================================================
    INITIALIZATION
    ========================================================================== */
 
 const initApp = () => {
+    initTheme();
     storage.initStorage();
 };
 
