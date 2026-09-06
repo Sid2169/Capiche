@@ -8,6 +8,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 // Defaults to the local dev server so development keeps working out of the box.
 const apiBaseUrl = process.env.API_URL || 'http://localhost:5000';
 
+// Google OAuth client ID for the "Sign in with Google" button. Public by
+// design, so it is safe to embed in the bundle. Leave unset (empty) to
+// hide the Google button entirely.
+const googleClientId = process.env.GOOGLE_CLIENT_ID || '';
+
 module.exports = {
 	entry: {
 		app: './src/app.js',
@@ -21,6 +26,7 @@ module.exports = {
 	plugins: [
 		new webpack.DefinePlugin({
 			'process.env.API_URL': JSON.stringify(apiBaseUrl + '/api'),
+			'process.env.GOOGLE_CLIENT_ID': JSON.stringify(googleClientId),
 		}),
 		new HtmlWebpackPlugin({
 			filename: 'index.html',
