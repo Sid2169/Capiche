@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { OAuth2Client } = require('google-auth-library');
+const auth = require('../middleware/auth');
 const User = require('../models/User');
 const router = express.Router();
 
@@ -34,6 +35,52 @@ router.post('/login', async (req, res) => {
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
     res.json({ token, userId: user._id });
   } catch (err) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Current user — used by the account management UI.
+router.get('/me', auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.userId);
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    res.json({
+      email: user.email,
+      createdAt: user.createdAt,
+      hasPassword: !!user.password,
+    });
+  } catch {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Change password for password-based accounts.
+router.post('/change-password', auth, async (req, res) => {
+  const { currentPassword, newPassword } = req.body;
+  if (!currentPassword || !newPassword) {
+    return res.status(400).json({ message: 'All fields are required' });
+  }
+  if (newPassword.length < 8) {
+    return res.status(400).json({ message: 'New password must be at least 8 characters' });
+  }
+
+  try {
+    const user = await User.findById(req.userId);
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    if (!user.password) {
+      return res.status(400).json({ message: 'This account uses Google sign-in and has no password' });
+    }
+
+    const match = await bcrypt.compare(currentPassword, user.password);
+    if (!match) return res.status(400).json({ message: 'Current password is incorrect' });
+
+    user.password = await bcrypt.hash(newPassword, 10);
+    await user.save();
+
+    res.json({ message: 'Password updated' });
+  } catch {
     res.status(500).json({ message: 'Server error' });
   }
 });
