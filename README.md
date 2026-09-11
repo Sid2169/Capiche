@@ -750,3 +750,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **localStorage persistence** — Use the existing project patterns when extending this area.
 - **task module** — Note any external service limits or required keys.
 - **priority system** — Prefer small, focused changes over broad rewrites.
+- **localStorage persistence** — Verify that links and references still resolve.
