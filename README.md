@@ -749,3 +749,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **task module** — Prefer small, focused changes over broad rewrites.
 - **localStorage persistence** — Use the existing project patterns when extending this area.
 - **task module** — Note any external service limits or required keys.
+- **priority system** — Prefer small, focused changes over broad rewrites.
