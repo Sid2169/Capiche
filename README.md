@@ -751,3 +751,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **task module** — Note any external service limits or required keys.
 - **priority system** — Prefer small, focused changes over broad rewrites.
 - **localStorage persistence** — Verify that links and references still resolve.
+- **storage layer** — Check the empty state after clearing local storage.
