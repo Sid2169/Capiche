@@ -753,3 +753,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **localStorage persistence** — Verify that links and references still resolve.
 - **storage layer** — Check the empty state after clearing local storage.
 - **theme handling** — Check the empty state after clearing local storage.
+- **GitHub Pages deployment** — Keep commands copy-pasteable for new contributors.
