@@ -752,3 +752,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **priority system** — Prefer small, focused changes over broad rewrites.
 - **localStorage persistence** — Verify that links and references still resolve.
 - **storage layer** — Check the empty state after clearing local storage.
+- **theme handling** — Check the empty state after clearing local storage.
