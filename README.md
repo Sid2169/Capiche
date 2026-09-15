@@ -755,3 +755,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **theme handling** — Check the empty state after clearing local storage.
 - **GitHub Pages deployment** — Keep commands copy-pasteable for new contributors.
 - **task module** — Verify that links and references still resolve.
+- **sorting** — Use the existing project patterns when extending this area.
