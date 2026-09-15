@@ -707,3 +707,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **storage layer** — Prefer small, focused changes over broad rewrites.
 - **keyboard shortcuts** — Note any external service limits or required keys.
 - **date filtering** — Confirm the expected behavior on a clean checkout.
+- **localStorage persistence** — Check the empty state after clearing local storage.
