@@ -757,3 +757,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **task module** — Verify that links and references still resolve.
 - **sorting** — Use the existing project patterns when extending this area.
 - **keyboard shortcuts** — Check the empty state after clearing local storage.
+- **browser support** — Check the empty state after clearing local storage.
