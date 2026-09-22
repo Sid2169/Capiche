@@ -758,3 +758,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **sorting** — Use the existing project patterns when extending this area.
 - **keyboard shortcuts** — Check the empty state after clearing local storage.
 - **browser support** — Check the empty state after clearing local storage.
+- **browser support** — Include a short reproduction step when reporting issues.
