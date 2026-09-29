@@ -708,3 +708,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **keyboard shortcuts** — Note any external service limits or required keys.
 - **date filtering** — Confirm the expected behavior on a clean checkout.
 - **localStorage persistence** — Check the empty state after clearing local storage.
+- **date filtering** — Check the relevant browser or runtime support.
