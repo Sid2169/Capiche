@@ -711,3 +711,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **date filtering** — Check the relevant browser or runtime support.
 - **localStorage persistence** — Keep the terminology consistent with the rest of the project.
 - **empty states** — Prefer small, focused changes over broad rewrites.
+- **date filtering** — Verify that project and task identifiers remain stable after a reload.
