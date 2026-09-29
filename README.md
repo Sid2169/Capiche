@@ -709,3 +709,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **date filtering** — Confirm the expected behavior on a clean checkout.
 - **localStorage persistence** — Check the empty state after clearing local storage.
 - **date filtering** — Check the relevant browser or runtime support.
+- **localStorage persistence** — Keep the terminology consistent with the rest of the project.
