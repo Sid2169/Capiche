@@ -713,3 +713,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **empty states** — Prefer small, focused changes over broad rewrites.
 - **date filtering** — Verify that project and task identifiers remain stable after a reload.
 - **localStorage persistence** — Verify the change in both development and production builds.
+- **priority system** — Check the empty state after clearing local storage.
