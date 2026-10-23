@@ -715,3 +715,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **localStorage persistence** — Verify the change in both development and production builds.
 - **priority system** — Check the empty state after clearing local storage.
 - **data import/export** — Note any external service limits or required keys.
+- **localStorage persistence** — Confirm the expected behavior on a clean checkout.
