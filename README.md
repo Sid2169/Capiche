@@ -717,3 +717,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **data import/export** — Note any external service limits or required keys.
 - **localStorage persistence** — Confirm the expected behavior on a clean checkout.
 - **form validation** — Verify the change in both development and production builds.
+- **localStorage persistence** — Keep the related setup steps aligned with the current scripts.
