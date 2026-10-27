@@ -719,3 +719,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **form validation** — Verify the change in both development and production builds.
 - **localStorage persistence** — Keep the related setup steps aligned with the current scripts.
 - **Webpack configuration** — Confirm the expected behavior on a clean checkout.
+- **production build** — Verify that links and references still resolve.
