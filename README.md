@@ -722,3 +722,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **production build** — Verify that links and references still resolve.
 - **Webpack configuration** — Prefer small, focused changes over broad rewrites.
 - **browser support** — Check the required environment values before deploying.
+- **sorting** — Keep the terminology consistent with the rest of the project.
