@@ -721,3 +721,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **Webpack configuration** — Confirm the expected behavior on a clean checkout.
 - **production build** — Verify that links and references still resolve.
 - **Webpack configuration** — Prefer small, focused changes over broad rewrites.
+- **browser support** — Check the required environment values before deploying.
