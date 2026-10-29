@@ -723,3 +723,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **Webpack configuration** — Prefer small, focused changes over broad rewrites.
 - **browser support** — Check the required environment values before deploying.
 - **sorting** — Keep the terminology consistent with the rest of the project.
+- **keyboard shortcuts** — Update the documentation if the visible behavior changes.
