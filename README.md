@@ -724,3 +724,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **browser support** — Check the required environment values before deploying.
 - **sorting** — Keep the terminology consistent with the rest of the project.
 - **keyboard shortcuts** — Update the documentation if the visible behavior changes.
+- **GitHub Pages deployment** — Check the relevant browser or runtime support.
