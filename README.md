@@ -725,3 +725,4 @@ If you found this project helpful, please consider giving it a ⭐!
 - **sorting** — Keep the terminology consistent with the rest of the project.
 - **keyboard shortcuts** — Update the documentation if the visible behavior changes.
 - **GitHub Pages deployment** — Check the relevant browser or runtime support.
+- **priority system** — Keep the related setup steps aligned with the current scripts.
