@@ -207,20 +207,33 @@ img {
 }
 
 .creator-credit {
-  margin-bottom: var(--sp-6);
+  align-self: flex-end;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--sp-1);
+  margin-bottom: var(--sp-4);
+  padding: var(--sp-2) var(--sp-3);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-pill);
+  background-color: var(--bg-surface);
   color: var(--text-secondary);
-  font-size: 1.4rem;
+  font-size: 1.2rem;
+  line-height: 1.5;
 }
 
 .creator-credit a {
   color: var(--text-primary);
   font-weight: var(--font-weight-semibold);
-  text-decoration: underline;
+  text-decoration: none;
   text-underline-offset: 3px;
+  transition: color var(--duration) var(--ease);
 }
 
-.creator-credit a:hover {
+.creator-credit a:hover,
+.creator-credit a:focus-visible {
   color: var(--brand-strong);
+  text-decoration: underline;
 }
 
 /* --------------------------------------------------------------------------

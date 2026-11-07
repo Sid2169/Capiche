@@ -493,20 +493,31 @@
       .loading .btn-submit { pointer-events: none; }
 
       .creator-credit {
-        margin-bottom: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 4px;
+        margin-top: 28px;
+        padding-top: 20px;
+        border-top: 1px solid var(--border-subtle);
         color: var(--text-secondary);
-        font-size: 1.4rem;
+        font-size: 1.2rem;
+        line-height: 1.5;
       }
 
       .creator-credit a {
         color: var(--text-primary);
         font-weight: 600;
-        text-decoration: underline;
+        text-decoration: none;
         text-underline-offset: 3px;
+        transition: color var(--duration) var(--ease);
       }
 
-      .creator-credit a:hover {
+      .creator-credit a:hover,
+      .creator-credit a:focus-visible {
         color: var(--brand-strong);
+        text-decoration: underline;
       }
 
       .creator-credit a:focus-visible {
@@ -577,10 +588,6 @@
 
           <!-- Mobile logo -->
           <span class="mobile-logo">Capiche</span>
-
-          <p class="creator-credit">
-            Created by <a href="https://sidsingh.vercel.app/" rel="author">Siddhartha Suman</a>
-          </p>
 
           <!-- Tab switcher -->
           <div class="auth-tabs" role="tablist">
@@ -697,6 +704,10 @@
               Create account
             </button>
           </form>
+
+          <footer class="creator-credit">
+            Created by <a href="https://sidsingh.vercel.app/" rel="author">Siddhartha Suman</a>
+          </footer>
 
         </div>
       </main>
