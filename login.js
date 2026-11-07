@@ -80,7 +80,7 @@ const initTheme = () => {
 
 
 const API_URL = "https://capiche-k86q.onrender.com/api";
-const GOOGLE_CLIENT_ID = "28454348736-qq956bsg77oitamu8b8nvgsnk0v6icet.apps.googleusercontent.com";
+const GOOGLE_CLIENT_ID = "";
 
 initTheme();
 
