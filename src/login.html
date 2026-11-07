@@ -491,6 +491,28 @@
       }
 
       .loading .btn-submit { pointer-events: none; }
+
+      .creator-credit {
+        margin-bottom: 24px;
+        color: var(--text-secondary);
+        font-size: 1.4rem;
+      }
+
+      .creator-credit a {
+        color: var(--text-primary);
+        font-weight: 600;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      .creator-credit a:hover {
+        color: var(--brand-strong);
+      }
+
+      .creator-credit a:focus-visible {
+        outline: 2px solid var(--brand);
+        outline-offset: 2px;
+      }
     </style>
   </head>
 
@@ -555,6 +577,10 @@
 
           <!-- Mobile logo -->
           <span class="mobile-logo">Capiche</span>
+
+          <p class="creator-credit">
+            Created by <a href="https://sidsingh.vercel.app/" rel="author">Siddhartha Suman</a>
+          </p>
 
           <!-- Tab switcher -->
           <div class="auth-tabs" role="tablist">

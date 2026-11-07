@@ -206,6 +206,23 @@ img {
   outline-offset: 2px;
 }
 
+.creator-credit {
+  margin-bottom: var(--sp-6);
+  color: var(--text-secondary);
+  font-size: 1.4rem;
+}
+
+.creator-credit a {
+  color: var(--text-primary);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.creator-credit a:hover {
+  color: var(--brand-strong);
+}
+
 /* --------------------------------------------------------------------------
    FORM ELEMENTS
    -------------------------------------------------------------------------- */

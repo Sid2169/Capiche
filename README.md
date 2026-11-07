@@ -10,6 +10,8 @@
 
 [Live Demo](https://sid2169.github.io/Capiche/) • [Report Bug](https://github.com/Sid2169/Capiche/issues) • [Request Feature](https://github.com/Sid2169/Capiche/issues)
 
+Created by [Siddhartha Suman](https://sidsingh.vercel.app/) — explore my portfolio and other projects.
+
 ---
 
 ## 📋 Table of Contents
@@ -620,6 +622,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 **Ead Adyreal** (Sid2169)
 
 - GitHub: [@Sid2169](https://github.com/Sid2169)
+- Developer portfolio: [Siddhartha Suman](https://sidsingh.vercel.app/)
 - Project Link: [Capiche](https://github.com/Sid2169/to-do-list)
 
 ---
