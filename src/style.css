@@ -225,7 +225,7 @@ img {
 .creator-credit a {
   color: var(--text-primary);
   font-weight: var(--font-weight-semibold);
-  text-decoration: none;
+  text-decoration: underline;
   text-underline-offset: 3px;
   transition: color var(--duration) var(--ease);
 }
